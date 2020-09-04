@@ -5,13 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'faker'
 
-20.times do
-  Car.create(
-    make: Faker::Vehicle.make,
-    color: Faker::Vehicle.color,
-    year: Faker::Vehicle.year,
-    price: Faker::Number.within(range: 5000..20000)
-  )
-end
+Car.create( { make: 'Renault', color: 'white', year: 2019, price: 12021 )
+Car.create( { make: 'Chevy', color: 'red', year: 2017, price: 1010 )
+Car.create( { make: 'Tesla', color: 'blue', year: 2015, price: 12098 )
+Car.create( { make: 'Audi', color: 'silver', year: 2019, price: 13093 )
+Car.create( { make: 'Nissan', color: 'green', year: 2018, price: 15000 )

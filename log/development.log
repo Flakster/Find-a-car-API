@@ -1333,3 +1333,30 @@ Processing by UsersController#create as HTML
 Completed 201 Created in 753ms (Views: 0.1ms | ActiveRecord: 17.6ms | Allocations: 5726)
 
 
+Started POST "/auth/login" for 127.0.0.1 at 2020-09-04 14:23:46 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"carlos@mail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "carlos@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "carlos@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 200 OK in 520ms (Views: 0.2ms | ActiveRecord: 5.2ms | Allocations: 7404)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-09-04 14:24:18 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 5ms (Views: 1.7ms | ActiveRecord: 0.6ms | Allocations: 2029)
+
+
+Started GET "/" for 127.0.0.1 at 2020-09-04 14:57:16 -0500
+Processing by CarsController#index as */*
+  [1m[36mCar Load (0.7ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 16ms (Views: 9.3ms | ActiveRecord: 5.1ms | Allocations: 8105)
+
+
