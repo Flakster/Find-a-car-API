@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authorize_request, only: :create
 
+  # GET /users
   def index
     @users = User.all
     json_response(@users)
@@ -25,4 +26,5 @@ class UsersController < ApplicationController
       :password_confirmation
     )
   end
+
 end

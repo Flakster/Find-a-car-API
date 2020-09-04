@@ -1105,3 +1105,231 @@ Processing by UsersController#index as */*
 Completed 200 OK in 10ms (Views: 1.4ms | ActiveRecord: 0.6ms | Allocations: 3341)
 
 
+Started GET "/users/2/cars" for 127.0.0.1 at 2020-09-04 10:42:23 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/users/2/cars"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/rails/info/routes" for 127.0.0.1 at 2020-09-04 10:42:43 -0500
+Processing by Rails::InfoController#routes as HTML
+  Rendering /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/actionpack-6.0.3.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [35 times] (Duration: 9.6ms | Allocations: 4836)
+  Rendered /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/actionpack-6.0.3.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 2.2ms | Allocations: 889)
+  Rendered /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 15.3ms | Allocations: 8631)
+Completed 200 OK in 20ms (Views: 17.8ms | ActiveRecord: 0.0ms | Allocations: 10462)
+
+
+Started GET "/users/2/favorites" for 127.0.0.1 at 2020-09-04 10:49:27 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mFavorite Load (0.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '2')[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 22ms (Views: 1.5ms | ActiveRecord: 8.0ms | Allocations: 8843)
+
+
+Started GET "/cars" for 127.0.0.1 at 2020-09-04 10:49:53 -0500
+Processing by CarsController#index as */*
+  [1m[36mCar Load (1.0ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 18ms (Views: 11.8ms | ActiveRecord: 4.3ms | Allocations: 7834)
+
+
+Started POST "/users/2/favorites" for 127.0.0.1 at 2020-09-04 10:51:08 -0500
+Processing by FavoritesController#create as HTML
+  Parameters: {"car_id"=>"18", "user_id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:12:in `create'
+  [1m[36mCar Load (0.3ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:12:in `create'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:12:in `create'
+  [1m[36mFavorite Create (0.9ms)[0m  [1m[32mINSERT INTO "favorites" ("car_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["car_id", 18], ["user_id", 2], ["created_at", "2020-09-04 15:51:08.308186"], ["updated_at", "2020-09-04 15:51:08.308186"]]
+  ↳ app/controllers/favorites_controller.rb:12:in `create'
+  [1m[35m (32.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:12:in `create'
+Completed 201 Created in 61ms (Views: 1.2ms | ActiveRecord: 35.9ms | Allocations: 10967)
+
+
+Started GET "/users/2/favorites" for 127.0.0.1 at 2020-09-04 10:51:30 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '2')[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 4ms (Views: 1.5ms | ActiveRecord: 0.8ms | Allocations: 1659)
+
+
+Started GET "/users/1/favorites" for 127.0.0.1 at 2020-09-04 10:51:44 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mFavorite Load (0.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '1')[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.9ms | Allocations: 1552)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2020-09-04 11:02:14 -0500
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::InfoController#routes as HTML
+  Rendering /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/actionpack-6.0.3.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [35 times] (Duration: 11.9ms | Allocations: 4837)
+  Rendered /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/actionpack-6.0.3.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 1.1ms | Allocations: 889)
+  Rendered /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 22.2ms | Allocations: 8632)
+Completed 200 OK in 30ms (Views: 27.1ms | ActiveRecord: 0.0ms | Allocations: 10460)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2020-09-04 11:03:40 -0500
+  
+SyntaxError (/home/carlos/projects/Find-a-car-API/config/routes.rb:5: syntax error, unexpected ',', expecting `end'
+  end, only :index
+     ^
+/home/carlos/projects/Find-a-car-API/config/routes.rb:10: syntax error, unexpected `end', expecting end-of-input):
+  
+config/routes.rb:5: syntax error, unexpected ',', expecting `end'
+config/routes.rb:10: syntax error, unexpected `end', expecting end-of-input
+config/routes.rb:5: syntax error, unexpected ',', expecting `end'
+config/routes.rb:10: syntax error, unexpected `end', expecting end-of-input
+Started GET "/rails/info/routes" for 127.0.0.1 at 2020-09-04 11:04:19 -0500
+  
+SyntaxError (/home/carlos/projects/Find-a-car-API/config/routes.rb:3: syntax error, unexpected symbol literal, expecting `do' or '{' or '('
+  resources :users, only :index
+                         ^
+):
+  
+config/routes.rb:3: syntax error, unexpected symbol literal, expecting `do' or '{' or '('
+config/routes.rb:3: syntax error, unexpected symbol literal, expecting `do' or '{' or '('
+Started GET "/rails/info/routes" for 127.0.0.1 at 2020-09-04 11:04:35 -0500
+Processing by Rails::InfoController#routes as HTML
+  Rendering /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/actionpack-6.0.3.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [36 times] (Duration: 10.2ms | Allocations: 4931)
+  Rendered /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/actionpack-6.0.3.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 0.9ms | Allocations: 682)
+  Rendered /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 13.7ms | Allocations: 8448)
+Completed 200 OK in 18ms (Views: 15.9ms | ActiveRecord: 0.0ms | Allocations: 9897)
+
+
+Started GET "/rails/info/routes" for 127.0.0.1 at 2020-09-04 11:05:00 -0500
+  
+SyntaxError (/home/carlos/projects/Find-a-car-API/config/routes.rb:5: syntax error, unexpected ',', expecting `end'
+  end, only: :index
+     ^
+/home/carlos/projects/Find-a-car-API/config/routes.rb:10: syntax error, unexpected `end', expecting end-of-input):
+  
+config/routes.rb:5: syntax error, unexpected ',', expecting `end'
+config/routes.rb:10: syntax error, unexpected `end', expecting end-of-input
+config/routes.rb:5: syntax error, unexpected ',', expecting `end'
+config/routes.rb:10: syntax error, unexpected `end', expecting end-of-input
+Started GET "/rails/info/routes" for 127.0.0.1 at 2020-09-04 11:05:33 -0500
+  
+SyntaxError (/home/carlos/projects/Find-a-car-API/config/routes.rb:4: syntax error, unexpected ':', expecting `end'
+    only: :index
+        ^
+/home/carlos/projects/Find-a-car-API/config/routes.rb:11: syntax error, unexpected `end', expecting end-of-input):
+  
+config/routes.rb:4: syntax error, unexpected ':', expecting `end'
+config/routes.rb:11: syntax error, unexpected `end', expecting end-of-input
+config/routes.rb:4: syntax error, unexpected ':', expecting `end'
+config/routes.rb:11: syntax error, unexpected `end', expecting end-of-input
+Started GET "/rails/info/routes" for 127.0.0.1 at 2020-09-04 11:06:00 -0500
+  
+SyntaxError (/home/carlos/projects/Find-a-car-API/config/routes.rb:5: syntax error, unexpected ':', expecting `end'
+    only: :index
+        ^
+/home/carlos/projects/Find-a-car-API/config/routes.rb:11: syntax error, unexpected `end', expecting end-of-input):
+  
+config/routes.rb:5: syntax error, unexpected ':', expecting `end'
+config/routes.rb:11: syntax error, unexpected `end', expecting end-of-input
+config/routes.rb:5: syntax error, unexpected ':', expecting `end'
+config/routes.rb:11: syntax error, unexpected `end', expecting end-of-input
+Started GET "/rails/info/routes" for 127.0.0.1 at 2020-09-04 11:06:32 -0500
+Processing by Rails::InfoController#routes as HTML
+  Rendering /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/actionpack-6.0.3.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [30 times] (Duration: 8.0ms | Allocations: 3936)
+  Rendered /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/actionpack-6.0.3.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 0.3ms | Allocations: 120)
+  Rendered /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 10.1ms | Allocations: 6167)
+Completed 200 OK in 12ms (Views: 10.8ms | ActiveRecord: 0.0ms | Allocations: 6846)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-09-04 11:08:17 -0500
+Processing by UsersController#index as */*
+Completed 422 Unprocessable Entity in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 401)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-09-04 11:08:31 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 20ms (Views: 1.5ms | ActiveRecord: 6.4ms | Allocations: 7574)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2020-09-04 11:09:00 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/users/2"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/signup" for 127.0.0.1 at 2020-09-04 11:10:58 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"name"=>"jose", "email"=>"jose@mail.com", "password"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:13:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "jose"], ["email", "jose@mail.com"], ["password_digest", "$2a$12$YNMCgniw8UDQF1oDV6xEJ.O522gsRkpVlFwifHAW2EjxJ3QMcSa/2"], ["created_at", "2020-09-04 16:10:59.082238"], ["updated_at", "2020-09-04 16:10:59.082238"]]
+  ↳ app/controllers/users_controller.rb:13:in `create'
+  [1m[35m (16.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:13:in `create'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jose@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jose@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 201 Created in 753ms (Views: 0.1ms | ActiveRecord: 17.6ms | Allocations: 5726)
+
+
