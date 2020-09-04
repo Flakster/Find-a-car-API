@@ -33,3 +33,731 @@ FOREIGN KEY ("user_id")
   [1m[35m (12.6ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(2085231909124572495)[0m
   [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.7ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "chevrolet"], ["color", "black"], ["year", 2106], ["price", 10000], ["created_at", "2020-09-03 21:27:31.478727"], ["updated_at", "2020-09-03 21:27:31.478727"]]
+  [1m[35m (98.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCar Load (1.0ms)[0m  [1m[34mSELECT "cars".* FROM "cars" LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/cars" for 127.0.0.1 at 2020-09-03 16:28:19 -0500
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CarsController#index as */*
+  [1m[36mCar Load (0.5ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 20ms (Views: 13.0ms | ActiveRecord: 4.7ms | Allocations: 6361)
+
+
+Started GET "/cars/1" for 127.0.0.1 at 2020-09-03 16:28:35 -0500
+Processing by CarsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCar Load (0.4ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:42:in `set_car'
+Completed 200 OK in 11ms (Views: 0.5ms | ActiveRecord: 0.9ms | Allocations: 2657)
+
+
+Started POST "/signup" for 127.0.0.1 at 2020-09-03 16:31:00 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"name"=>"William Sanchez", "email"=>"wsanchez@mail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:6:in `create'
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "William Sanchez"], ["email", "wsanchez@mail.com"], ["password_digest", "$2a$12$F8cdHVjm6YgRqMdDBNsDA.0AbtCh/dsqG0PtUsIuK7YEajjPfOL9C"], ["created_at", "2020-09-03 21:31:00.983032"], ["updated_at", "2020-09-03 21:31:00.983032"]]
+  ↳ app/controllers/users_controller.rb:6:in `create'
+  [1m[35m (70.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:6:in `create'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "wsanchez@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "wsanchez@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 201 Created in 864ms (Views: 0.1ms | ActiveRecord: 76.3ms | Allocations: 9084)
+
+
+Started POST "/users/1/favorites" for 127.0.0.1 at 2020-09-03 16:33:06 -0500
+Processing by FavoritesController#create as HTML
+  Parameters: {"car_id"=>"1", "user_id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:20:in `user'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:12:in `create'
+  [1m[36mCar Load (0.5ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:12:in `create'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:12:in `create'
+  [1m[36mFavorite Create (0.9ms)[0m  [1m[32mINSERT INTO "favorites" ("car_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["car_id", 1], ["user_id", 1], ["created_at", "2020-09-03 21:33:06.197905"], ["updated_at", "2020-09-03 21:33:06.197905"]]
+  ↳ app/controllers/favorites_controller.rb:12:in `create'
+  [1m[35m (24.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:12:in `create'
+Completed 201 Created in 60ms (Views: 0.4ms | ActiveRecord: 28.7ms | Allocations: 10701)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Chantay Frami"], ["email", "russell@yahoo.com"], ["password_digest", "$2a$12$NVpTxjZdh7tifnvaXM8zSeYCUs86fj2eK4gzKmsvMZWSMLOEnz1ia"], ["admin", false], ["created_at", "2020-09-03 22:07:01.751925"], ["updated_at", "2020-09-03 22:07:01.751925"]]
+  [1m[35m (18.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Clyde Huel"], ["email", "clark_schaden@yahoo.com"], ["password_digest", "$2a$12$ilhept11sMUQYOHtOFF0WuaFArhsFnXQ8WHH6dI5eao.trNQQmkZm"], ["admin", false], ["created_at", "2020-09-03 22:07:02.031332"], ["updated_at", "2020-09-03 22:07:02.031332"]]
+  [1m[35m (4.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Tobias Ebert"], ["email", "wilber@yahoo.com"], ["password_digest", "$2a$12$BKOX6QHrbTm7UVe5PW7Gf.hxDLnzer306kJkA92Z0F8lOgKTjOngq"], ["admin", false], ["created_at", "2020-09-03 22:07:02.283537"], ["updated_at", "2020-09-03 22:07:02.283537"]]
+  [1m[35m (8.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Janee Lueilwitz"], ["email", "carrol@yahoo.com"], ["password_digest", "$2a$12$OMwy45UffTZ.sq40WN9GzuA2sIsmnINIsQnM5DhZyKq4hbjDZBPpy"], ["admin", false], ["created_at", "2020-09-03 22:07:02.551289"], ["updated_at", "2020-09-03 22:07:02.551289"]]
+  [1m[35m (19.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Corey Satterfield"], ["email", "terica@gmail.com"], ["password_digest", "$2a$12$XNa3QNKmjItI5IB5fcSgi.QtMeKxNakvye5FItVcSYpT9FXR3Y0ZG"], ["admin", false], ["created_at", "2020-09-03 22:07:02.817396"], ["updated_at", "2020-09-03 22:07:02.817396"]]
+  [1m[35m (64.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Lakiesha Connelly Ret."], ["email", "scarlett.batz@hotmail.com"], ["password_digest", "$2a$12$Xfu2miWB5VhwIPTI2ddNZe28mbmFheJHGi0Wyv7iLMAjm6j9e7FXC"], ["admin", false], ["created_at", "2020-09-03 22:10:53.614412"], ["updated_at", "2020-09-03 22:10:53.614412"]]
+  [1m[35m (22.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Mr. Rebekah Ernser"], ["email", "sheila_quigley@gmail.com"], ["password_digest", "$2a$12$icArSp2ws0Py5CUYz3vvgOHuPukVOYiFRZS0sgB5UdTp.eVRcHv5m"], ["admin", false], ["created_at", "2020-09-03 22:10:53.891224"], ["updated_at", "2020-09-03 22:10:53.891224"]]
+  [1m[35m (12.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Creola Buckridge"], ["email", "kacey@hotmail.com"], ["password_digest", "$2a$12$XdSrbMXyD/AQOtyyaEs4Q.QFOy3S3plz3u4g73Y6yGwQXZsZZaPUm"], ["admin", false], ["created_at", "2020-09-03 22:10:54.148920"], ["updated_at", "2020-09-03 22:10:54.148920"]]
+  [1m[35m (10.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Armida Dare DVM"], ["email", "porter_aufderhar@gmail.com"], ["password_digest", "$2a$12$h9KfWKvhjHf2z2nKMJVlJuwhlVuUm4nJhYtxpkfq7C7.JTAxArzda"], ["admin", false], ["created_at", "2020-09-03 22:10:54.405069"], ["updated_at", "2020-09-03 22:10:54.405069"]]
+  [1m[35m (10.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Prof. Jean Legros"], ["email", "fermin@hotmail.com"], ["password_digest", "$2a$12$KDY5gwiRZYaAHRhM0KTpJO/9Uh.68GNsc6xzLJQUAnvlS4iRdPooe"], ["admin", false], ["created_at", "2020-09-03 22:10:54.660713"], ["updated_at", "2020-09-03 22:10:54.660713"]]
+  [1m[35m (9.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Antione Rohan DVM"], ["email", "wilford.emmerich@yahoo.com"], ["password_digest", "$2a$12$hResUO.XpozuBAxeq1rv9OTnDxNEh9.YNsQnWyngAFykTu8GXIxMy"], ["admin", false], ["created_at", "2020-09-03 22:14:23.937393"], ["updated_at", "2020-09-03 22:14:23.937393"]]
+  [1m[35m (10.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Tyson Keeling"], ["email", "karoline@gmail.com"], ["password_digest", "$2a$12$ATyKxv9fVSaZwOgCNP80FeUojmi8ryUcwcKMX2MajsmaBo.wObwBe"], ["admin", false], ["created_at", "2020-09-03 22:14:24.193281"], ["updated_at", "2020-09-03 22:14:24.193281"]]
+  [1m[35m (44.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Coy Volkman"], ["email", "deloise@hotmail.com"], ["password_digest", "$2a$12$rfVLoJ5yBZ1fkuLqN.0MzuSLazb/9StjBHx3VlOSevAhIfrKHkrJG"], ["admin", false], ["created_at", "2020-09-03 22:14:24.507850"], ["updated_at", "2020-09-03 22:14:24.507850"]]
+  [1m[35m (27.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Rev. Tommy Gusikowski"], ["email", "pablo_beatty@gmail.com"], ["password_digest", "$2a$12$rV8HnxJ/.ZUBic9jQWv/aOG99GFbTMDBs7oxQCnB/JgJLGXu8k9Vm"], ["admin", false], ["created_at", "2020-09-03 22:14:24.781432"], ["updated_at", "2020-09-03 22:14:24.781432"]]
+  [1m[35m (55.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Katrice Kling"], ["email", "brice@hotmail.com"], ["password_digest", "$2a$12$XCDtbmUjOxv0l6geoS127Oq56c27/hcV/zNiWqBMJVxG4GETPNTF."], ["admin", false], ["created_at", "2020-09-03 22:14:25.111115"], ["updated_at", "2020-09-03 22:14:25.111115"]]
+  [1m[35m (15.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.5ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Honda"], ["color", "Yellow"], ["year", 2017], ["price", 10048], ["created_at", "2020-09-03 22:14:25.145205"], ["updated_at", "2020-09-03 22:14:25.145205"]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Buick"], ["color", "Red"], ["year", 2017], ["price", 18144], ["created_at", "2020-09-03 22:14:25.152107"], ["updated_at", "2020-09-03 22:14:25.152107"]]
+  [1m[35m (7.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Audi"], ["color", "White"], ["year", 2014], ["price", 12125], ["created_at", "2020-09-03 22:14:25.163535"], ["updated_at", "2020-09-03 22:14:25.163535"]]
+  [1m[35m (7.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.4ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Nissan"], ["color", "Blue"], ["year", 2020], ["price", 9357], ["created_at", "2020-09-03 22:14:25.174530"], ["updated_at", "2020-09-03 22:14:25.174530"]]
+  [1m[35m (7.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (1.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Chevy"], ["color", "Green"], ["year", 2018], ["price", 11370], ["created_at", "2020-09-03 22:14:25.188239"], ["updated_at", "2020-09-03 22:14:25.188239"]]
+  [1m[35m (8.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (1.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Audi"], ["color", "Green"], ["year", 2015], ["price", 10152], ["created_at", "2020-09-03 22:14:25.211099"], ["updated_at", "2020-09-03 22:14:25.211099"]]
+  [1m[35m (8.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (1.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Chevy"], ["color", "Red"], ["year", 2020], ["price", 12449], ["created_at", "2020-09-03 22:14:25.233010"], ["updated_at", "2020-09-03 22:14:25.233010"]]
+  [1m[35m (9.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (1.0ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Lincoln"], ["color", "White"], ["year", 2018], ["price", 17186], ["created_at", "2020-09-03 22:14:25.254988"], ["updated_at", "2020-09-03 22:14:25.254988"]]
+  [1m[35m (8.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (1.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "BMW"], ["color", "Green"], ["year", 2017], ["price", 13260], ["created_at", "2020-09-03 22:14:25.278192"], ["updated_at", "2020-09-03 22:14:25.278192"]]
+  [1m[35m (8.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.7ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Ford"], ["color", "Beige"], ["year", 2014], ["price", 8529], ["created_at", "2020-09-03 22:14:25.297759"], ["updated_at", "2020-09-03 22:14:25.297759"]]
+  [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCar Load (0.4ms)[0m  [1m[34mSELECT "cars".* FROM "cars" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/cars" for 127.0.0.1 at 2020-09-03 17:16:27 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CarsController#index as */*
+  [1m[36mCar Load (0.5ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 22ms (Views: 15.8ms | ActiveRecord: 3.7ms | Allocations: 7573)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-09-03 17:17:08 -0500
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for UsersController):
+  
+actionpack (6.0.3.2) lib/abstract_controller/base.rb:131:in `process'
+actionpack (6.0.3.2) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.0.3.2) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.3.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/cars" for 127.0.0.1 at 2020-09-03 17:18:29 -0500
+Processing by CarsController#index as */*
+  [1m[36mCar Load (0.4ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/controllers/concerns/response.rb:3:in `json_response'
+Completed 200 OK in 8ms (Views: 7.5ms | ActiveRecord: 0.4ms | Allocations: 2183)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-09-03 17:18:43 -0500
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for UsersController):
+  
+actionpack (6.0.3.2) lib/abstract_controller/base.rb:131:in `process'
+actionpack (6.0.3.2) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.0.3.2) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:49:in `block in serve'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.0.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.0.3.2) lib/action_dispatch/routing/route_set.rb:834:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.0.3.2) lib/active_record/migration.rb:567:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.0.3.2) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:32:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+  [1m[35m (32.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (22.9ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (358.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Find_a_car_API_development"[0m
+  [1m[35m (331.7ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Find_a_car_API_test"[0m
+  [1m[35m (1392.9ms)[0m  [1m[35mCREATE DATABASE "Find_a_car_API_development" ENCODING = 'unicode'[0m
+  [1m[35m (792.4ms)[0m  [1m[35mCREATE DATABASE "Find_a_car_API_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "cars" CASCADE[0m
+  [1m[35m (100.2ms)[0m  [1m[35mCREATE TABLE "cars" ("id" bigserial primary key, "make" character varying, "color" character varying, "year" integer, "price" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites" CASCADE[0m
+  [1m[35m (60.0ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" bigserial primary key, "car_id" bigint NOT NULL, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (45.4ms)[0m  [1m[35mCREATE  INDEX  "index_favorites_on_car_id" ON "favorites"  ("car_id")[0m
+  [1m[35m (44.9ms)[0m  [1m[35mCREATE  INDEX  "index_favorites_on_user_id" ON "favorites"  ("user_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (92.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "password_digest" character varying, "admin" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (7.6ms)[0m  [1m[35mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_9396eb4f36"
+FOREIGN KEY ("car_id")
+  REFERENCES "cars" ("id")
+[0m
+  [1m[35m (7.7ms)[0m  [1m[35mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_d15744e438"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (93.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (7.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200903205840)[0m
+  [1m[35m (8.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200903205535),
+(20200903205641);
+
+[0m
+  [1m[35m (103.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-09-04 13:38:53.665389"], ["updated_at", "2020-09-04 13:38:53.665389"]]
+  [1m[35m (5.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "69ab1f80121911825a18fe69bba7fb4a9b95b988"], ["created_at", "2020-09-04 13:38:53.683327"], ["updated_at", "2020-09-04 13:38:53.683327"]]
+  [1m[35m (12.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "cars" CASCADE[0m
+  [1m[35m (115.6ms)[0m  [1m[35mCREATE TABLE "cars" ("id" bigserial primary key, "make" character varying, "color" character varying, "year" integer, "price" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites" CASCADE[0m
+  [1m[35m (59.9ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" bigserial primary key, "car_id" bigint NOT NULL, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (56.3ms)[0m  [1m[35mCREATE  INDEX  "index_favorites_on_car_id" ON "favorites"  ("car_id")[0m
+  [1m[35m (58.6ms)[0m  [1m[35mCREATE  INDEX  "index_favorites_on_user_id" ON "favorites"  ("user_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (100.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "password_digest" character varying, "admin" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (7.6ms)[0m  [1m[35mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_9396eb4f36"
+FOREIGN KEY ("car_id")
+  REFERENCES "cars" ("id")
+[0m
+  [1m[35m (7.8ms)[0m  [1m[35mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_d15744e438"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (116.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200903205840)[0m
+  [1m[35m (8.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200903205535),
+(20200903205641);
+
+[0m
+  [1m[35m (95.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-09-04 13:38:54.434583"], ["updated_at", "2020-09-04 13:38:54.434583"]]
+  [1m[35m (10.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.5ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2020-09-04 13:38:54.462355"], ["key", "environment"]]
+  [1m[35m (11.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "69ab1f80121911825a18fe69bba7fb4a9b95b988"], ["created_at", "2020-09-04 13:38:54.481786"], ["updated_at", "2020-09-04 13:38:54.481786"]]
+  [1m[35m (5.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Hilton Hudson"], ["email", "damion@hotmail.com"], ["password_digest", "$2a$12$ENJjl.nSB9NdooPFSC5kk.DXBOQlVX0O1VE9oENdwO3xlHkttzKne"], ["admin", false], ["created_at", "2020-09-04 13:38:54.861520"], ["updated_at", "2020-09-04 13:38:54.861520"]]
+  [1m[35m (25.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Carissa Hagenes"], ["email", "jody@gmail.com"], ["password_digest", "$2a$12$AlSoQ8DY8y0v7lEsKVI5F.Jd9BajQHQuQvtRuIqoMixK5Fwlb4Xm6"], ["admin", false], ["created_at", "2020-09-04 13:38:55.142131"], ["updated_at", "2020-09-04 13:38:55.142131"]]
+  [1m[35m (11.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Jonas Leffler"], ["email", "joya_dietrich@hotmail.com"], ["password_digest", "$2a$12$bgpFPwc5qPYHUqlglRcQGedwOtXMtkZJhaFGH7USzpIB3CfRFM0zK"], ["admin", false], ["created_at", "2020-09-04 13:38:55.398774"], ["updated_at", "2020-09-04 13:38:55.398774"]]
+  [1m[35m (10.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Zelma Hagenes"], ["email", "hillary@gmail.com"], ["password_digest", "$2a$12$3RLP98F8nIJ875DisU9uWOy7BB4rVHOBCCP9BFoNIi1yqfHfbdp4C"], ["admin", false], ["created_at", "2020-09-04 13:38:55.653825"], ["updated_at", "2020-09-04 13:38:55.653825"]]
+  [1m[35m (22.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Lakeisha Reichert MD"], ["email", "quentin.crooks@yahoo.com"], ["password_digest", "$2a$12$9EKiG8qD/zaPhXjJzyd0v.hjZCVbx8CwIIABCkT8/m1OWWamlgDiW"], ["admin", false], ["created_at", "2020-09-04 13:38:55.920752"], ["updated_at", "2020-09-04 13:38:55.920752"]]
+  [1m[35m (11.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.6ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Dodge"], ["color", "Grey"], ["year", 2016], ["price", 12138], ["created_at", "2020-09-04 13:38:55.944305"], ["updated_at", "2020-09-04 13:38:55.944305"]]
+  [1m[35m (9.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.4ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "BMW"], ["color", "Red"], ["year", 2019], ["price", 17188], ["created_at", "2020-09-04 13:38:55.958156"], ["updated_at", "2020-09-04 13:38:55.958156"]]
+  [1m[35m (6.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.4ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "BMW"], ["color", "White"], ["year", 2020], ["price", 6604], ["created_at", "2020-09-04 13:38:55.968949"], ["updated_at", "2020-09-04 13:38:55.968949"]]
+  [1m[35m (7.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Audi"], ["color", "Blue"], ["year", 2019], ["price", 6565], ["created_at", "2020-09-04 13:38:55.980265"], ["updated_at", "2020-09-04 13:38:55.980265"]]
+  [1m[35m (7.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Chevy"], ["color", "Blue"], ["year", 2018], ["price", 7928], ["created_at", "2020-09-04 13:38:55.991557"], ["updated_at", "2020-09-04 13:38:55.991557"]]
+  [1m[35m (7.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Nissan"], ["color", "Green"], ["year", 2019], ["price", 12500], ["created_at", "2020-09-04 13:38:56.002666"], ["updated_at", "2020-09-04 13:38:56.002666"]]
+  [1m[35m (7.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Audi"], ["color", "Red"], ["year", 2019], ["price", 17618], ["created_at", "2020-09-04 13:38:56.013799"], ["updated_at", "2020-09-04 13:38:56.013799"]]
+  [1m[35m (7.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Chevy"], ["color", "White"], ["year", 2010], ["price", 15824], ["created_at", "2020-09-04 13:38:56.024904"], ["updated_at", "2020-09-04 13:38:56.024904"]]
+  [1m[35m (7.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (1.0ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "BMW"], ["color", "White"], ["year", 2018], ["price", 13647], ["created_at", "2020-09-04 13:38:56.038721"], ["updated_at", "2020-09-04 13:38:56.038721"]]
+  [1m[35m (9.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (1.0ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Honda"], ["color", "Black"], ["year", 2016], ["price", 5922], ["created_at", "2020-09-04 13:38:56.060926"], ["updated_at", "2020-09-04 13:38:56.060926"]]
+  [1m[35m (6.4ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/rails/info/routes" for 127.0.0.1 at 2020-09-04 09:00:07 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::InfoController#routes as HTML
+  Rendering /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/info/routes.html.erb within layouts/application
+  Rendered collection of /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/actionpack-6.0.3.2/lib/action_dispatch/middleware/templates/routes/_route.html.erb [35 times] (Duration: 65.6ms | Allocations: 4837)
+  Rendered /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/actionpack-6.0.3.2/lib/action_dispatch/middleware/templates/routes/_table.html.erb (Duration: 50.8ms | Allocations: 1058)
+  Rendered /home/carlos/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/railties-6.0.3.2/lib/rails/templates/rails/info/routes.html.erb within layouts/application (Duration: 144.6ms | Allocations: 8913)
+Completed 200 OK in 273ms (Views: 192.6ms | ActiveRecord: 0.0ms | Allocations: 11333)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2020-09-04 09:00:08 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/rails/info/routes?path=sign" for 127.0.0.1 at 2020-09-04 09:01:21 -0500
+Processing by Rails::InfoController#routes as */*
+  Parameters: {"path"=>"sign"}
+Completed 200 OK in 8ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 1733)
+
+
+Started POST "/signup" for 127.0.0.1 at 2020-09-04 09:04:39 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"name"=>"carlos", "email"=>"carlos@mail.com", "password"=>"[FILTERED]", "password_verification"=>"[FILTERED]"}
+[31mUnpermitted parameter: :password_verification[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:6:in `create'
+  [1m[36mUser Create (0.9ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "carlos"], ["email", "carlos@mail.com"], ["password_digest", "$2a$12$B8f9WtIqUgX7b.n52zukc.fQ1dc7A8pWngTOfRO6XWqhu9Rg0Bu6C"], ["created_at", "2020-09-04 14:04:40.095406"], ["updated_at", "2020-09-04 14:04:40.095406"]]
+  ↳ app/controllers/users_controller.rb:6:in `create'
+  [1m[35m (44.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:6:in `create'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "carlos@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "carlos@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:18:in `user'
+Completed 201 Created in 829ms (Views: 0.2ms | ActiveRecord: 51.3ms | Allocations: 10304)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (229.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Find_a_car_API_development"[0m
+  [1m[35m (223.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Find_a_car_API_test"[0m
+  [1m[35m (780.6ms)[0m  [1m[35mCREATE DATABASE "Find_a_car_API_development" ENCODING = 'unicode'[0m
+  [1m[35m (789.7ms)[0m  [1m[35mCREATE DATABASE "Find_a_car_API_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "cars" CASCADE[0m
+  [1m[35m (103.2ms)[0m  [1m[35mCREATE TABLE "cars" ("id" bigserial primary key, "make" character varying, "color" character varying, "year" integer, "price" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites" CASCADE[0m
+  [1m[35m (51.1ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" bigserial primary key, "car_id" bigint NOT NULL, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (39.3ms)[0m  [1m[35mCREATE  INDEX  "index_favorites_on_car_id" ON "favorites"  ("car_id")[0m
+  [1m[35m (49.6ms)[0m  [1m[35mCREATE  INDEX  "index_favorites_on_user_id" ON "favorites"  ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (118.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "password_digest" character varying, "admin" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (9.6ms)[0m  [1m[35mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_9396eb4f36"
+FOREIGN KEY ("car_id")
+  REFERENCES "cars" ("id")
+[0m
+  [1m[35m (9.9ms)[0m  [1m[35mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_d15744e438"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (84.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200903205840)[0m
+  [1m[35m (9.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200903205535),
+(20200903205641);
+
+[0m
+  [1m[35m (105.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-09-04 14:15:52.260378"], ["updated_at", "2020-09-04 14:15:52.260378"]]
+  [1m[35m (4.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (2.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "69ab1f80121911825a18fe69bba7fb4a9b95b988"], ["created_at", "2020-09-04 14:15:52.292308"], ["updated_at", "2020-09-04 14:15:52.292308"]]
+  [1m[35m (12.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "cars" CASCADE[0m
+  [1m[35m (90.5ms)[0m  [1m[35mCREATE TABLE "cars" ("id" bigserial primary key, "make" character varying, "color" character varying, "year" integer, "price" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites" CASCADE[0m
+  [1m[35m (52.8ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" bigserial primary key, "car_id" bigint NOT NULL, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (52.3ms)[0m  [1m[35mCREATE  INDEX  "index_favorites_on_car_id" ON "favorites"  ("car_id")[0m
+  [1m[35m (48.5ms)[0m  [1m[35mCREATE  INDEX  "index_favorites_on_user_id" ON "favorites"  ("user_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (85.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "password_digest" character varying, "admin" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (9.4ms)[0m  [1m[35mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_9396eb4f36"
+FOREIGN KEY ("car_id")
+  REFERENCES "cars" ("id")
+[0m
+  [1m[35m (9.6ms)[0m  [1m[35mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_d15744e438"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (105.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (11.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200903205840)[0m
+  [1m[35m (8.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200903205535),
+(20200903205641);
+
+[0m
+  [1m[35m (86.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-09-04 14:15:52.952114"], ["updated_at", "2020-09-04 14:15:52.952114"]]
+  [1m[35m (7.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.6ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2020-09-04 14:15:52.970651"], ["key", "environment"]]
+  [1m[35m (10.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (2.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "69ab1f80121911825a18fe69bba7fb4a9b95b988"], ["created_at", "2020-09-04 14:15:52.993316"], ["updated_at", "2020-09-04 14:15:52.993316"]]
+  [1m[35m (6.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Glenna King"], ["email", "kathey.denesik@yahoo.com"], ["password_digest", "$2a$12$MDOYf5iLHsNPCkIe6SdBi.rBxGmO7aaC.Z6fW68pY/FVNnh1J.36y"], ["admin", false], ["created_at", "2020-09-04 14:15:53.461890"], ["updated_at", "2020-09-04 14:15:53.461890"]]
+  [1m[35m (21.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Fransisca Nikolaus"], ["email", "faustino_marks@yahoo.com"], ["password_digest", "$2a$12$d60LPIgFxgjr2R16ejm1Ee7cfLVKTpl71CSjDra83CGx0XQYbGjvO"], ["admin", false], ["created_at", "2020-09-04 14:15:53.745247"], ["updated_at", "2020-09-04 14:15:53.745247"]]
+  [1m[35m (59.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Wade Tromp"], ["email", "rocco@yahoo.com"], ["password_digest", "$2a$12$zSus3lQK5xyaqRywazxvkOloso3ThNLOSjN6er1pqSOPE0xRj5B3O"], ["admin", false], ["created_at", "2020-09-04 14:15:54.085591"], ["updated_at", "2020-09-04 14:15:54.085591"]]
+  [1m[35m (55.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Bruce Reilly"], ["email", "coleman_rodriguez@yahoo.com"], ["password_digest", "$2a$12$LzrKCIY9GSxMm9YGJJM7hOOAtC8OAVr6PeOVpPJbA4zI7r9YeWSpi"], ["admin", false], ["created_at", "2020-09-04 14:15:54.421869"], ["updated_at", "2020-09-04 14:15:54.421869"]]
+  [1m[35m (40.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Marshall Connelly IV"], ["email", "amos@gmail.com"], ["password_digest", "$2a$12$pKLAwXFiXHfzQFHz3PREAujhopaZwSMHn55sFve807DhwVK/eNwKi"], ["admin", false], ["created_at", "2020-09-04 14:15:54.741564"], ["updated_at", "2020-09-04 14:15:54.741564"]]
+  [1m[35m (22.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.5ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Audi"], ["color", "Violet"], ["year", 2020], ["price", 12858], ["created_at", "2020-09-04 14:15:54.783828"], ["updated_at", "2020-09-04 14:15:54.783828"]]
+  [1m[35m (12.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Chevy"], ["color", "Orange"], ["year", 2019], ["price", 13897], ["created_at", "2020-09-04 14:15:54.800938"], ["updated_at", "2020-09-04 14:15:54.800938"]]
+  [1m[35m (6.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.4ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Nissan"], ["color", "Black"], ["year", 2020], ["price", 12139], ["created_at", "2020-09-04 14:15:54.813542"], ["updated_at", "2020-09-04 14:15:54.813542"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Honda"], ["color", "Yellow"], ["year", 2018], ["price", 19453], ["created_at", "2020-09-04 14:15:54.822665"], ["updated_at", "2020-09-04 14:15:54.822665"]]
+  [1m[35m (6.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Honda"], ["color", "Green"], ["year", 2020], ["price", 15664], ["created_at", "2020-09-04 14:15:54.834547"], ["updated_at", "2020-09-04 14:15:54.834547"]]
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.7ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Ford"], ["color", "Black"], ["year", 2018], ["price", 15650], ["created_at", "2020-09-04 14:15:54.846568"], ["updated_at", "2020-09-04 14:15:54.846568"]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Nissan"], ["color", "Blue"], ["year", 2017], ["price", 16412], ["created_at", "2020-09-04 14:15:54.855990"], ["updated_at", "2020-09-04 14:15:54.855990"]]
+  [1m[35m (7.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Ford"], ["color", "Black"], ["year", 2019], ["price", 5602], ["created_at", "2020-09-04 14:15:54.867256"], ["updated_at", "2020-09-04 14:15:54.867256"]]
+  [1m[35m (6.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Toyota"], ["color", "Yellow"], ["year", 2019], ["price", 13823], ["created_at", "2020-09-04 14:15:54.880950"], ["updated_at", "2020-09-04 14:15:54.880950"]]
+  [1m[35m (4.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (7.4ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Chevy"], ["color", "Beige"], ["year", 2018], ["price", 5659], ["created_at", "2020-09-04 14:15:54.890126"], ["updated_at", "2020-09-04 14:15:54.890126"]]
+  [1m[35m (7.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (225.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "Find_a_car_API_development"[0m
+  [1m[35m (810.2ms)[0m  [1m[35mCREATE DATABASE "Find_a_car_API_development" ENCODING = 'unicode'[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "cars" CASCADE[0m
+  [1m[35m (96.2ms)[0m  [1m[35mCREATE TABLE "cars" ("id" bigserial primary key, "make" character varying, "color" character varying, "year" integer, "price" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites" CASCADE[0m
+  [1m[35m (60.4ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" bigserial primary key, "car_id" bigint NOT NULL, "user_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (46.5ms)[0m  [1m[35mCREATE  INDEX  "index_favorites_on_car_id" ON "favorites"  ("car_id")[0m
+  [1m[35m (48.6ms)[0m  [1m[35mCREATE  INDEX  "index_favorites_on_user_id" ON "favorites"  ("user_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (104.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "password_digest" character varying, "admin" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (18.3ms)[0m  [1m[35mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_9396eb4f36"
+FOREIGN KEY ("car_id")
+  REFERENCES "cars" ("id")
+[0m
+  [1m[35m (5.8ms)[0m  [1m[35mALTER TABLE "favorites" ADD CONSTRAINT "fk_rails_d15744e438"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (94.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (9.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200903205840)[0m
+  [1m[35m (10.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200903205535),
+(20200903205641);
+
+[0m
+  [1m[35m (87.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-09-04 14:36:09.784343"], ["updated_at", "2020-09-04 14:36:09.784343"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "69ab1f80121911825a18fe69bba7fb4a9b95b988"], ["created_at", "2020-09-04 14:36:09.800526"], ["updated_at", "2020-09-04 14:36:09.800526"]]
+  [1m[35m (3.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "cars"[0m
+  [1m[35m (132.3ms)[0m  [1m[35mCREATE TABLE "cars" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "make" varchar, "color" varchar, "year" integer, "price" integer, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  [1m[35m (137.8ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "car_id" bigint NOT NULL, "user_id" bigint NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (131.9ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_car_id" ON "favorites" ("car_id")[0m
+  [1m[35m (160.9ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (147.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "admin" boolean, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.3ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TEMPORARY TABLE "afavorites" ("id" integer NOT NULL PRIMARY KEY, "car_id" integer NOT NULL, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE  INDEX "tindex_afavorites_on_user_id" ON "afavorites" ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "tindex_afavorites_on_car_id" ON "afavorites" ("car_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "afavorites" ("id","car_id","user_id","created_at","updated_at")
+                     SELECT "id","car_id","user_id","created_at","updated_at" FROM "favorites"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE "favorites"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer NOT NULL PRIMARY KEY, "car_id" integer NOT NULL, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_9396eb4f36"
+FOREIGN KEY ("car_id")
+  REFERENCES "cars" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_car_id" ON "favorites" ("car_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("id","car_id","user_id","created_at","updated_at")
+                     SELECT "id","car_id","user_id","created_at","updated_at" FROM "afavorites"[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE "afavorites"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (107.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.5ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TEMPORARY TABLE "afavorites" ("id" integer NOT NULL PRIMARY KEY, "car_id" integer NOT NULL, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "tindex_afavorites_on_user_id" ON "afavorites" ("user_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX "tindex_afavorites_on_car_id" ON "afavorites" ("car_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "afavorites" ("id","car_id","user_id","created_at","updated_at")
+                     SELECT "id","car_id","user_id","created_at","updated_at" FROM "favorites"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mDROP TABLE "favorites"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer NOT NULL PRIMARY KEY, "car_id" integer NOT NULL, "user_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_9396eb4f36"
+FOREIGN KEY ("car_id")
+  REFERENCES "cars" ("id")
+, CONSTRAINT "fk_rails_d15744e438"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_car_id" ON "favorites" ("car_id")[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "favorites" ("id","car_id","user_id","created_at","updated_at")
+                     SELECT "id","car_id","user_id","created_at","updated_at" FROM "afavorites"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE "afavorites"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (97.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (120.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (96.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200903205840)[0m
+  [1m[35m (95.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200903205535),
+(20200903205641);
+
+[0m
+  [1m[35m (122.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-09-04 14:36:11.431910"], ["updated_at", "2020-09-04 14:36:11.431910"]]
+  [1m[35m (117.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.7ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2020-09-04 14:36:11.569385"], ["key", "environment"]]
+  [1m[35m (89.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "69ab1f80121911825a18fe69bba7fb4a9b95b988"], ["created_at", "2020-09-04 14:36:11.679549"], ["updated_at", "2020-09-04 14:36:11.679549"]]
+  [1m[35m (113.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Carlo Cole"], ["email", "sherilyn@gmail.com"], ["password_digest", "$2a$12$98Qf9oUYeinTSSIEB0nLyOBiseQ3IoqZ1X0CVkIuOin/Bq1vs.Pvu"], ["admin", false], ["created_at", "2020-09-04 14:36:12.197511"], ["updated_at", "2020-09-04 14:36:12.197511"]]
+  [1m[35m (50.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Liane Witting"], ["email", "malcolm.rolfson@gmail.com"], ["password_digest", "$2a$12$Go5W6RDBJGPiTfDl2.ctqOPPYEiVehA.CZpTX2pQOAzOpmSZfqEJC"], ["admin", false], ["created_at", "2020-09-04 14:36:12.517538"], ["updated_at", "2020-09-04 14:36:12.517538"]]
+  [1m[35m (53.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Perla Torp"], ["email", "christel.nicolas@gmail.com"], ["password_digest", "$2a$12$gd1LA1Q6KUgHAbXP8z2w/u.CcDAWg6etZeu1XGIW7HEGhVqkEf1hW"], ["admin", false], ["created_at", "2020-09-04 14:36:12.840636"], ["updated_at", "2020-09-04 14:36:12.840636"]]
+  [1m[35m (52.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Deeanna Lakin"], ["email", "linwood_blick@yahoo.com"], ["password_digest", "$2a$12$LpCcF6QtLtmhBDlH/b7bB.lnz0wgpGEgnYCj7n.wKryGOT1QgJIcy"], ["admin", false], ["created_at", "2020-09-04 14:36:13.145304"], ["updated_at", "2020-09-04 14:36:13.145304"]]
+  [1m[35m (36.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "admin", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Asley Corwin IV"], ["email", "jamison@yahoo.com"], ["password_digest", "$2a$12$RIXOiRJXNsg0.jQxI9priedjCuksuyLU9.3ey.BqtPg1ZIAO34aui"], ["admin", false], ["created_at", "2020-09-04 14:36:13.426020"], ["updated_at", "2020-09-04 14:36:13.426020"]]
+  [1m[35m (44.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (1.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Audi"], ["color", "Yellow"], ["year", 2014], ["price", 17182], ["created_at", "2020-09-04 14:36:13.509447"], ["updated_at", "2020-09-04 14:36:13.509447"]]
+  [1m[35m (11.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.6ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Lincoln"], ["color", "Blue"], ["year", 2017], ["price", 5836], ["created_at", "2020-09-04 14:36:13.531393"], ["updated_at", "2020-09-04 14:36:13.531393"]]
+  [1m[35m (3.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.5ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Nissan"], ["color", "Yellow"], ["year", 2018], ["price", 6357], ["created_at", "2020-09-04 14:36:13.542290"], ["updated_at", "2020-09-04 14:36:13.542290"]]
+  [1m[35m (3.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.6ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Audi"], ["color", "Yellow"], ["year", 2017], ["price", 6713], ["created_at", "2020-09-04 14:36:13.552967"], ["updated_at", "2020-09-04 14:36:13.552967"]]
+  [1m[35m (4.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.6ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Lincoln"], ["color", "Grey"], ["year", 2018], ["price", 17547], ["created_at", "2020-09-04 14:36:13.564549"], ["updated_at", "2020-09-04 14:36:13.564549"]]
+  [1m[35m (4.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.6ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "BMW"], ["color", "Violet"], ["year", 2019], ["price", 8525], ["created_at", "2020-09-04 14:36:13.575681"], ["updated_at", "2020-09-04 14:36:13.575681"]]
+  [1m[35m (4.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.6ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "BMW"], ["color", "Orange"], ["year", 2014], ["price", 14267], ["created_at", "2020-09-04 14:36:13.586617"], ["updated_at", "2020-09-04 14:36:13.586617"]]
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.6ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Dodge"], ["color", "Red"], ["year", 2015], ["price", 15187], ["created_at", "2020-09-04 14:36:13.597943"], ["updated_at", "2020-09-04 14:36:13.597943"]]
+  [1m[35m (4.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.6ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Honda"], ["color", "Black"], ["year", 2019], ["price", 5776], ["created_at", "2020-09-04 14:36:13.609055"], ["updated_at", "2020-09-04 14:36:13.609055"]]
+  [1m[35m (3.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCar Create (0.6ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["make", "Chevy"], ["color", "Black"], ["year", 2015], ["price", 14569], ["created_at", "2020-09-04 14:36:13.620320"], ["updated_at", "2020-09-04 14:36:13.620320"]]
+  [1m[35m (3.4ms)[0m  [1m[35mCOMMIT[0m
