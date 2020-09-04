@@ -8578,3 +8578,513 @@ Processing by UsersController#create as HTML
 Completed 422 Unprocessable Entity in 3ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 2073)
   [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
   [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "schema_sha1"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA defer_foreign_keys = ON[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (112.0ms)[0m  [1m[31mDELETE FROM "cars";[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'cars';[0m
+  [1m[35m (120.2ms)[0m  [1m[31mDELETE FROM "users";[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'users';[0m
+  [1m[35m (90.4ms)[0m  [1m[31mDELETE FROM "favorites";[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT name FROM sqlite_master WHERE type='table' AND name='sqlite_sequence';[0m
+  [1m[35m (0.4ms)[0m  [1m[31mDELETE FROM sqlite_sequence where name = 'favorites';[0m
+  [1m[35m (0.2ms)[0m  [1m[35mPRAGMA defer_foreign_keys = 0[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Sanford Klocko Esq."], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$5BYnzYGwZxJWkL4WeRe3q.9.SrhiNLVIAOpN2Na.nXQhzQ0qytVD."], ["created_at", "2020-09-04 15:27:42.264680"], ["updated_at", "2020-09-04 15:27:42.264680"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foobar@mail.com"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foobar@mail.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Maile Klein"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$qthMytIhfQRjEbMq1r/aIO4Gi3gYnxexAZ2zAip5WrMYcPxO89vH6"], ["created_at", "2020-09-04 15:27:42.277981"], ["updated_at", "2020-09-04 15:27:42.277981"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Janella Heidenreich"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$ca.X4zKqHqvKTR0mhm7Uf.iMethqdFw88I.90Z0MPxa/uU17MYmhi"], ["created_at", "2020-09-04 15:27:42.293004"], ["updated_at", "2020-09-04 15:27:42.293004"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Anthony Kozey Esq."], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$I9EiEaPRGe3flHJYjHU1OeyVvxuvj1GaazEfDVK5JuYTRQ/C8xIxm"], ["created_at", "2020-09-04 15:27:42.304271"], ["updated_at", "2020-09-04 15:27:42.304271"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Shizue Considine Esq."], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$zBMIPlHTKZCLISHPrvylSudtL8mqjHVtpEnxDPd874Y4GcazcUmYS"], ["created_at", "2020-09-04 15:27:42.313059"], ["updated_at", "2020-09-04 15:27:42.313059"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (3.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Lourdes Trantow"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$xtmVcugwTeoA0GjLuS75L.ouIGV3kUcMyHJyyGrG.Fe35tBcumsRi"], ["created_at", "2020-09-04 15:27:42.390567"], ["updated_at", "2020-09-04 15:27:42.390567"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/login" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"foobar@mail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foobar@mail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foobar@mail.com"], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 580)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Raymon Mertz DO"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$hiiqhWQ0pWFd2e78Iq37beMHiRnrxEDK7wEXd3AP532bp7.n/5Wju"], ["created_at", "2020-09-04 15:27:42.412083"], ["updated_at", "2020-09-04 15:27:42.412083"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started POST "/auth/login" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"dora@harvey.co", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "dora@harvey.co"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 271)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "BMW"], ["color", "Yellow"], ["year", 2013], ["price", 18442], ["created_at", "2020-09-04 15:27:42.426370"], ["updated_at", "2020-09-04 15:27:42.426370"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "BMW"], ["color", "Black"], ["year", 2019], ["price", 18600], ["created_at", "2020-09-04 15:27:42.428558"], ["updated_at", "2020-09-04 15:27:42.428558"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Toyota"], ["color", "Red"], ["year", 2009], ["price", 8239], ["created_at", "2020-09-04 15:27:42.430580"], ["updated_at", "2020-09-04 15:27:42.430580"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Ford"], ["color", "Beige"], ["year", 2018], ["price", 19913], ["created_at", "2020-09-04 15:27:42.435492"], ["updated_at", "2020-09-04 15:27:42.435492"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Ford"], ["color", "Red"], ["year", 2020], ["price", 6961], ["created_at", "2020-09-04 15:27:42.438727"], ["updated_at", "2020-09-04 15:27:42.438727"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "BMW"], ["color", "Blue"], ["year", 2015], ["price", 7002], ["created_at", "2020-09-04 15:27:42.440575"], ["updated_at", "2020-09-04 15:27:42.440575"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Toyota"], ["color", "Violet"], ["year", 2020], ["price", 12475], ["created_at", "2020-09-04 15:27:42.442334"], ["updated_at", "2020-09-04 15:27:42.442334"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Toyota"], ["color", "Black"], ["year", 2014], ["price", 11477], ["created_at", "2020-09-04 15:27:42.444297"], ["updated_at", "2020-09-04 15:27:42.444297"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Dodge"], ["color", "Yellow"], ["year", 2016], ["price", 10999], ["created_at", "2020-09-04 15:27:42.446024"], ["updated_at", "2020-09-04 15:27:42.446024"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Chevy"], ["color", "Green"], ["year", 2017], ["price", 19816], ["created_at", "2020-09-04 15:27:42.449172"], ["updated_at", "2020-09-04 15:27:42.449172"]]
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Lyman Gusikowski"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$FN7jPEWoG7lKQgiHRsliVu2qkTjcncuUt25JYBe.GmSTB40R9DiyK"], ["created_at", "2020-09-04 15:27:42.454975"], ["updated_at", "2020-09-04 15:27:42.454975"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/cars" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms | Allocations: 1690)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (1.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Audi"], ["color", "Red"], ["year", 2018], ["price", 18381], ["created_at", "2020-09-04 15:27:42.466408"], ["updated_at", "2020-09-04 15:27:42.466408"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.4ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Audi"], ["color", "Grey"], ["year", 2018], ["price", 16642], ["created_at", "2020-09-04 15:27:42.470898"], ["updated_at", "2020-09-04 15:27:42.470898"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Ford"], ["color", "Blue"], ["year", 2017], ["price", 11667], ["created_at", "2020-09-04 15:27:42.473911"], ["updated_at", "2020-09-04 15:27:42.473911"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "BMW"], ["color", "Black"], ["year", 2018], ["price", 12915], ["created_at", "2020-09-04 15:27:42.475522"], ["updated_at", "2020-09-04 15:27:42.475522"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Honda"], ["color", "Blue"], ["year", 2019], ["price", 9266], ["created_at", "2020-09-04 15:27:42.477026"], ["updated_at", "2020-09-04 15:27:42.477026"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Audi"], ["color", "Grey"], ["year", 2014], ["price", 13798], ["created_at", "2020-09-04 15:27:42.478544"], ["updated_at", "2020-09-04 15:27:42.478544"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.5ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Chevy"], ["color", "Violet"], ["year", 2008], ["price", 16067], ["created_at", "2020-09-04 15:27:42.480108"], ["updated_at", "2020-09-04 15:27:42.480108"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Lincoln"], ["color", "Beige"], ["year", 2011], ["price", 19088], ["created_at", "2020-09-04 15:27:42.483965"], ["updated_at", "2020-09-04 15:27:42.483965"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.6ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Dodge"], ["color", "Red"], ["year", 2015], ["price", 8930], ["created_at", "2020-09-04 15:27:42.487483"], ["updated_at", "2020-09-04 15:27:42.487483"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Audi"], ["color", "White"], ["year", 2017], ["price", 12899], ["created_at", "2020-09-04 15:27:42.490410"], ["updated_at", "2020-09-04 15:27:42.490410"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Brenna VonRueden"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$qbhv3C8IVlqnMAyfbR.IAul4.rQx2VY..W2M8U1ekwAYyahVQwnYa"], ["created_at", "2020-09-04 15:27:42.493681"], ["updated_at", "2020-09-04 15:27:42.493681"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/cars" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by CarsController#index as HTML
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+Completed 200 OK in 2ms (Views: 2.0ms | ActiveRecord: 0.1ms | Allocations: 1595)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Buick"], ["color", "Orange"], ["year", 2019], ["price", 18162], ["created_at", "2020-09-04 15:27:42.505906"], ["updated_at", "2020-09-04 15:27:42.505906"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Lincoln"], ["color", "Violet"], ["year", 2020], ["price", 17709], ["created_at", "2020-09-04 15:27:42.507979"], ["updated_at", "2020-09-04 15:27:42.507979"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Buick"], ["color", "Green"], ["year", 2019], ["price", 16972], ["created_at", "2020-09-04 15:27:42.509712"], ["updated_at", "2020-09-04 15:27:42.509712"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Honda"], ["color", "White"], ["year", 2019], ["price", 19017], ["created_at", "2020-09-04 15:27:42.511395"], ["updated_at", "2020-09-04 15:27:42.511395"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Lincoln"], ["color", "Grey"], ["year", 2020], ["price", 9370], ["created_at", "2020-09-04 15:27:42.513176"], ["updated_at", "2020-09-04 15:27:42.513176"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Audi"], ["color", "White"], ["year", 2020], ["price", 9292], ["created_at", "2020-09-04 15:27:42.515076"], ["updated_at", "2020-09-04 15:27:42.515076"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Honda"], ["color", "Grey"], ["year", 2019], ["price", 13945], ["created_at", "2020-09-04 15:27:42.517977"], ["updated_at", "2020-09-04 15:27:42.517977"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Nissan"], ["color", "Yellow"], ["year", 2020], ["price", 19831], ["created_at", "2020-09-04 15:27:42.519722"], ["updated_at", "2020-09-04 15:27:42.519722"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Honda"], ["color", "Blue"], ["year", 2019], ["price", 12073], ["created_at", "2020-09-04 15:27:42.521535"], ["updated_at", "2020-09-04 15:27:42.521535"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Buick"], ["color", "Grey"], ["year", 2014], ["price", 16510], ["created_at", "2020-09-04 15:27:42.523500"], ["updated_at", "2020-09-04 15:27:42.523500"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Dion Schinner"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$DDcBsOd8wOqMUWi0Q4NaSubGy05CEdbRt3bvXCjyrzcWBZR/Ok3tW"], ["created_at", "2020-09-04 15:27:42.526182"], ["updated_at", "2020-09-04 15:27:42.526182"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/cars/1" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by CarsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCar Load (0.3ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 448)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Chevy"], ["color", "Violet"], ["year", 2018], ["price", 18226], ["created_at", "2020-09-04 15:27:42.536992"], ["updated_at", "2020-09-04 15:27:42.536992"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Chevy"], ["color", "Grey"], ["year", 2018], ["price", 19125], ["created_at", "2020-09-04 15:27:42.538706"], ["updated_at", "2020-09-04 15:27:42.538706"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Honda"], ["color", "Orange"], ["year", 2013], ["price", 13620], ["created_at", "2020-09-04 15:27:42.540423"], ["updated_at", "2020-09-04 15:27:42.540423"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Chevy"], ["color", "Beige"], ["year", 2012], ["price", 14578], ["created_at", "2020-09-04 15:27:42.542594"], ["updated_at", "2020-09-04 15:27:42.542594"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "BMW"], ["color", "Black"], ["year", 2016], ["price", 15759], ["created_at", "2020-09-04 15:27:42.545709"], ["updated_at", "2020-09-04 15:27:42.545709"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Audi"], ["color", "Yellow"], ["year", 2019], ["price", 10521], ["created_at", "2020-09-04 15:27:42.548856"], ["updated_at", "2020-09-04 15:27:42.548856"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.6ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Chevy"], ["color", "Yellow"], ["year", 2019], ["price", 7478], ["created_at", "2020-09-04 15:27:42.550708"], ["updated_at", "2020-09-04 15:27:42.550708"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Dodge"], ["color", "Orange"], ["year", 2019], ["price", 9732], ["created_at", "2020-09-04 15:27:42.553892"], ["updated_at", "2020-09-04 15:27:42.553892"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "BMW"], ["color", "Yellow"], ["year", 2020], ["price", 15182], ["created_at", "2020-09-04 15:27:42.555542"], ["updated_at", "2020-09-04 15:27:42.555542"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Chevy"], ["color", "Beige"], ["year", 2011], ["price", 13667], ["created_at", "2020-09-04 15:27:42.557381"], ["updated_at", "2020-09-04 15:27:42.557381"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Inell Walsh"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$U9uQyFzhCu769Tue9sH/Tu1NcgyhSF5YJUQiwGm6Iv9ZMRxeSueVC"], ["created_at", "2020-09-04 15:27:42.560308"], ["updated_at", "2020-09-04 15:27:42.560308"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/cars/1" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by CarsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.1ms | Allocations: 322)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Honda"], ["color", "Red"], ["year", 2012], ["price", 11092], ["created_at", "2020-09-04 15:27:42.569179"], ["updated_at", "2020-09-04 15:27:42.569179"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Chevy"], ["color", "Beige"], ["year", 2016], ["price", 8316], ["created_at", "2020-09-04 15:27:42.571287"], ["updated_at", "2020-09-04 15:27:42.571287"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Chevy"], ["color", "Red"], ["year", 2017], ["price", 10523], ["created_at", "2020-09-04 15:27:42.573046"], ["updated_at", "2020-09-04 15:27:42.573046"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Dodge"], ["color", "Violet"], ["year", 2018], ["price", 17448], ["created_at", "2020-09-04 15:27:42.574701"], ["updated_at", "2020-09-04 15:27:42.574701"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Toyota"], ["color", "Red"], ["year", 2016], ["price", 9817], ["created_at", "2020-09-04 15:27:42.576361"], ["updated_at", "2020-09-04 15:27:42.576361"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Lincoln"], ["color", "Red"], ["year", 2014], ["price", 11988], ["created_at", "2020-09-04 15:27:42.578146"], ["updated_at", "2020-09-04 15:27:42.578146"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Lincoln"], ["color", "Blue"], ["year", 2018], ["price", 10125], ["created_at", "2020-09-04 15:27:42.579790"], ["updated_at", "2020-09-04 15:27:42.579790"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Dodge"], ["color", "Grey"], ["year", 2009], ["price", 18090], ["created_at", "2020-09-04 15:27:42.581626"], ["updated_at", "2020-09-04 15:27:42.581626"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Chevy"], ["color", "Red"], ["year", 2019], ["price", 17819], ["created_at", "2020-09-04 15:27:42.584285"], ["updated_at", "2020-09-04 15:27:42.584285"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Honda"], ["color", "Red"], ["year", 2011], ["price", 6860], ["created_at", "2020-09-04 15:27:42.586535"], ["updated_at", "2020-09-04 15:27:42.586535"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Larry Emmerich"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$X381UXDx3A1C9lZKjXa42.wCYojQFDw.y9ka3q/81PA1X6BUyCvn."], ["created_at", "2020-09-04 15:27:42.589552"], ["updated_at", "2020-09-04 15:27:42.589552"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/cars/100" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by CarsController#show as HTML
+  Parameters: {"id"=>"100"}
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 100], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 194)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Chevy"], ["color", "Black"], ["year", 2017], ["price", 18764], ["created_at", "2020-09-04 15:27:42.599202"], ["updated_at", "2020-09-04 15:27:42.599202"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Ford"], ["color", "Green"], ["year", 2008], ["price", 9750], ["created_at", "2020-09-04 15:27:42.602979"], ["updated_at", "2020-09-04 15:27:42.602979"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "BMW"], ["color", "Black"], ["year", 2019], ["price", 18356], ["created_at", "2020-09-04 15:27:42.605768"], ["updated_at", "2020-09-04 15:27:42.605768"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Toyota"], ["color", "Grey"], ["year", 2018], ["price", 17670], ["created_at", "2020-09-04 15:27:42.607333"], ["updated_at", "2020-09-04 15:27:42.607333"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Toyota"], ["color", "Blue"], ["year", 2017], ["price", 8853], ["created_at", "2020-09-04 15:27:42.608829"], ["updated_at", "2020-09-04 15:27:42.608829"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Honda"], ["color", "White"], ["year", 2014], ["price", 17555], ["created_at", "2020-09-04 15:27:42.610280"], ["updated_at", "2020-09-04 15:27:42.610280"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Nissan"], ["color", "Green"], ["year", 2017], ["price", 17697], ["created_at", "2020-09-04 15:27:42.611823"], ["updated_at", "2020-09-04 15:27:42.611823"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.4ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Chevy"], ["color", "White"], ["year", 2010], ["price", 15012], ["created_at", "2020-09-04 15:27:42.613456"], ["updated_at", "2020-09-04 15:27:42.613456"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.3ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Chevy"], ["color", "Green"], ["year", 2018], ["price", 6097], ["created_at", "2020-09-04 15:27:42.616654"], ["updated_at", "2020-09-04 15:27:42.616654"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Honda"], ["color", "Violet"], ["year", 2018], ["price", 6845], ["created_at", "2020-09-04 15:27:42.620028"], ["updated_at", "2020-09-04 15:27:42.620028"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Hillary Frami"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$F.VJPD8A8M5pv9/6RLeVKepTTAlDsAd/gzXto3OyXpLYE5AfcCTw2"], ["created_at", "2020-09-04 15:27:42.622795"], ["updated_at", "2020-09-04 15:27:42.622795"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/cars/100" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by CarsController#show as HTML
+  Parameters: {"id"=>"100"}
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 100], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 194)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Verlene Bogan"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$6mOgbKKDThc25w0oJP/EjOWpbLcTPsaNtHOCfezA8BrZT5scaz4he"], ["created_at", "2020-09-04 15:27:42.631389"], ["updated_at", "2020-09-04 15:27:42.631389"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Ford"], ["color", "Yellow"], ["year", 2019], ["price", 13153], ["created_at", "2020-09-04 15:27:42.633690"], ["updated_at", "2020-09-04 15:27:42.633690"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFavorite Create (0.2ms)[0m  [1m[32mINSERT INTO "favorites" ("car_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["car_id", 1], ["user_id", 1], ["created_at", "2020-09-04 15:27:42.639825"], ["updated_at", "2020-09-04 15:27:42.639825"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/users/1/favorites" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by FavoritesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '1')[0m
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.2ms | Allocations: 640)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Lawana Marvin"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$5fy8nb.k7K6.BpZjvoj2IuSGT68halAeinuszna7DCKLTf3LqVTeu"], ["created_at", "2020-09-04 15:27:42.653622"], ["updated_at", "2020-09-04 15:27:42.653622"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.1ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Lincoln"], ["color", "Red"], ["year", 2019], ["price", 11711], ["created_at", "2020-09-04 15:27:42.657008"], ["updated_at", "2020-09-04 15:27:42.657008"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFavorite Create (0.1ms)[0m  [1m[32mINSERT INTO "favorites" ("car_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["car_id", 1], ["user_id", 1], ["created_at", "2020-09-04 15:27:42.659431"], ["updated_at", "2020-09-04 15:27:42.659431"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started GET "/users/1/favorites" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by FavoritesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '1')[0m
+Completed 200 OK in 3ms (Views: 0.8ms | ActiveRecord: 0.2ms | Allocations: 571)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Patsy Wolff"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$UG2uz4vxBQ5MY3CL2m1rcOXrFmSBLZ6/qjigf0e4U9Kmxzfahs52K"], ["created_at", "2020-09-04 15:27:42.672166"], ["updated_at", "2020-09-04 15:27:42.672166"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Create (0.2ms)[0m  [1m[32mINSERT INTO "cars" ("make", "color", "year", "price", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["make", "Buick"], ["color", "Green"], ["year", 2015], ["price", 16252], ["created_at", "2020-09-04 15:27:42.675481"], ["updated_at", "2020-09-04 15:27:42.675481"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mCar Load (0.1ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFavorite Create (0.2ms)[0m  [1m[32mINSERT INTO "favorites" ("car_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["car_id", 1], ["user_id", 1], ["created_at", "2020-09-04 15:27:42.678685"], ["updated_at", "2020-09-04 15:27:42.678685"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Started DELETE "/favorites/1" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by FavoritesController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mFavorite Destroy (0.1ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+Completed 204 No Content in 3ms (ActiveRecord: 0.4ms | Allocations: 699)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+Started POST "/signup" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"name"=>"Dr. Donald Parker", "email"=>"foobar@mail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Dr. Donald Parker"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$Lqc0qul230HR/hd9PMC.8OBuOFc/.jqFYnumJ8mfcoN2CgB5NxWYq"], ["created_at", "2020-09-04 15:27:42.698760"], ["updated_at", "2020-09-04 15:27:42.698760"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foobar@mail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foobar@mail.com"], ["LIMIT", 1]]
+Completed 201 Created in 9ms (Views: 0.1ms | ActiveRecord: 0.8ms | Allocations: 1090)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+Started POST "/signup" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"name"=>"Myrna Ledner", "email"=>"foobar@mail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Myrna Ledner"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$gPWAVmpoaH9/L0QoTkLHFug4UX36jgCuggNFlkipBrYKTLybwpFja"], ["created_at", "2020-09-04 15:27:42.715793"], ["updated_at", "2020-09-04 15:27:42.715793"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foobar@mail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foobar@mail.com"], ["LIMIT", 1]]
+Completed 201 Created in 8ms (Views: 0.1ms | ActiveRecord: 0.8ms | Allocations: 1052)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+Started POST "/signup" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by UsersController#create as HTML
+  Parameters: {"name"=>"Justin Bailey", "email"=>"foobar@mail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_2[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Justin Bailey"], ["email", "foobar@mail.com"], ["password_digest", "$2a$04$MG0ZczE..D0feaCXkQbP.uRekJS8A3/r2vbdbtxkr/7RRFnhyfX/u"], ["created_at", "2020-09-04 15:27:42.733970"], ["updated_at", "2020-09-04 15:27:42.733970"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_2[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foobar@mail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foobar@mail.com"], ["LIMIT", 1]]
+Completed 201 Created in 8ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 1052)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+Started POST "/signup" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by UsersController#create as HTML
+Completed 422 Unprocessable Entity in 4ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 2094)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+Started POST "/signup" for 127.0.0.1 at 2020-09-04 10:27:42 -0500
+Processing by UsersController#create as HTML
+Completed 422 Unprocessable Entity in 3ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 2073)
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m

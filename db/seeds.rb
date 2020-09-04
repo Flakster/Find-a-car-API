@@ -7,16 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-5.times do
-  User.create(
-    name: Faker::Name.name,
-    email: Faker::Internet.free_email,
-    password: 'pass123',
-    admin: false
-  )
-end
-
-10.times do
+20.times do
   Car.create(
     make: Faker::Vehicle.make,
     color: Faker::Vehicle.color,
