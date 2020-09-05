@@ -2,7 +2,6 @@
 
 class CarsController < ApplicationController
   before_action :set_car, only: %i[show update destroy]
-  skip_before_action :authorize_request, only: %i[index show]
 
   # GET /cars
   def index
@@ -12,8 +11,12 @@ class CarsController < ApplicationController
 
   # POST /cars
   def create
-    @car = Car.create!(cars_params)
-    json_response(@car, :created)
+    if @current_user.admin
+      @car = Car.create!(cars_params)
+      json_response(@car, :created)
+    else
+      render(json: { message: Message.unauthorized }, status: 401) 
+    end
   end
 
   # GET /cars/:id
@@ -23,14 +26,22 @@ class CarsController < ApplicationController
 
   # PUT /cars/:id
   def update
-    @car.update(cars_params)
-    head :no_content
+    if @current_user.admin
+      @car.update(cars_params)
+      head :no_content
+    else
+      render(json: { message: Message.unauthorized }, status: 401) 
+    end
   end
 
   # DELETE /cars/:id
   def destroy
-    @car.destroy
-    head :no_content
+    if @current_user.admin
+      @car.destroy
+      head :no_content
+    else
+      render(json: { message: Message.unauthorized }, status: 401) 
+    end
   end
 
   private

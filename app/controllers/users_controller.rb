@@ -6,7 +6,11 @@ class UsersController < ApplicationController
   # GET /users
   def index
     @users = User.all
-    json_response(@users)
+    if @current_user.admin
+      json_response(@users)
+    else
+      render(json: { message: Message.unauthorized }, status: 401) 
+    end
   end
 
   # POST /signup
@@ -25,7 +29,8 @@ class UsersController < ApplicationController
       :name,
       :email,
       :password,
-      :password_confirmation
+      :password_confirmation,
+      :admin
     )
   end
 end
