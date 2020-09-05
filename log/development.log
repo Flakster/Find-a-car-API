@@ -2378,3 +2378,99 @@ FOREIGN KEY ("user_id")
   [1m[35m (7.4ms)[0m  [1m[35mCOMMIT[0m
   [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
   [1m[36mCar Load (1.5ms)[0m  [1m[34mSELECT "cars".* FROM "cars" LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/users" for 127.0.0.1 at 2020-09-05 11:02:22 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+Completed 422 Unprocessable Entity in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 409)
+
+
+Started POST "/users/auth/login" for 127.0.0.1 at 2020-09-05 11:03:13 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/users/auth/login"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/auth/login" for 127.0.0.1 at 2020-09-05 11:03:45 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"carlos@mail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "carlos@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+Completed 401 Unauthorized in 10ms (Views: 0.2ms | ActiveRecord: 2.3ms | Allocations: 3138)
+
+
+Started POST "/auth/login" for 127.0.0.1 at 2020-09-05 11:04:07 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"admin@mail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+Completed 200 OK in 493ms (Views: 0.1ms | ActiveRecord: 2.5ms | Allocations: 4951)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-09-05 11:04:23 -0500
+Processing by UsersController#index as */*
+Completed 422 Unprocessable Entity in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 98)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-09-05 11:04:43 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 404 Not Found in 3ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 922)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-09-05 11:05:39 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 15ms (Views: 1.7ms | ActiveRecord: 3.8ms | Allocations: 6575)
+
+
+Started POST "/auth/login" for 127.0.0.1 at 2020-09-05 11:32:02 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"admin@mail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+Completed 200 OK in 517ms (Views: 0.2ms | ActiveRecord: 4.5ms | Allocations: 7382)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-09-05 11:32:21 -0500
+Processing by UsersController#index as */*
+Completed 422 Unprocessable Entity in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 306)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-09-05 11:32:53 -0500
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 0.6ms | Allocations: 1793)
+
+

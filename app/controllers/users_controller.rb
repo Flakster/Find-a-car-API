@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :set_user, except: [:create, :index]
   skip_before_action :authorize_request, only: :create
 
   # GET /users
   def index
-    @users = User.all
     if @current_user.admin
+      @users = User.all
       json_response(@users)
     else
-      render(json: { message: Message.unauthorized }, status: 401) 
+      render(json: { message: Message.unauthorized }, status: 401)
     end
   end
 
@@ -22,6 +23,26 @@ class UsersController < ApplicationController
     json_response(response, :created)
   end
 
+  # PUT /users/:id
+  def update
+    if @current_user.admin
+      @user.update(user_params)
+      head :no_content
+    else
+      render(json: { message: Message.unauthorized }, status: 401)
+    end
+  end
+
+  # DELETE /users/:id
+  def destroy
+    if @current_user.admin
+      @user.destroy
+      head :no_content
+    else
+      render(json: { message: Message.unauthorized }, status: 401)
+    end
+  end
+
   private
 
   def user_params
@@ -32,5 +53,9 @@ class UsersController < ApplicationController
       :password_confirmation,
       :admin
     )
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end

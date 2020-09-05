@@ -26,7 +26,7 @@ class FavoritesController < ApplicationController
     end
   end
 
-  # DELETE /favorites/:id
+  # DELETE /users/:user_id/favorites/:id
   def destroy
     # The user can only delete its own favorites
     if @current_user.id == @user_id

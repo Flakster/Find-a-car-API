@@ -4,9 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Car API', type: :request do
   # initialize test data
-  let(:user) { create(:user) }
+  let!(:user) { FactoryBot.create(:admin) }
   let!(:cars) { create_list(:car, 10) }
-  let(:car_id) { cars.first.id }
+  let!(:car) {cars.first}
+  let(:car_id) { car.id }
   # authorize request
   let(:headers) { valid_headers }
 
@@ -22,6 +23,20 @@ RSpec.describe 'Car API', type: :request do
 
     it 'returns status code 200' do
       expect(response).to have_http_status(200)
+    end
+  end
+
+  # Test suite for POST /cars
+  describe 'POST /cars' do
+    let!(:user) { FactoryBot.create(:admin) }
+    let(:valid_attributes) do
+      attributes_for(:car)
+    end
+    context 'when request attributes are valid' do
+      before { post '/cars', params: valid_attributes.to_json, headers: headers}
+      it 'returns status code 201' do
+        expect(response).to have_http_status(201)
+      end
     end
   end
 
@@ -52,4 +67,32 @@ RSpec.describe 'Car API', type: :request do
       end
     end
   end
+
+  # Tests suite for PUT /cars/:id
+  describe 'PUT /cars/:id' do
+    let(:valid_attributes) { attributes_for(:car) }
+    context 'when the record exists' do
+      before { put "/cars/#{car.id}",params: valid_attributes.to_json, headers: headers  }
+      it 'updates the record' do
+        expect(response.body).to be_empty
+      end
+      it 'returns status code 204' do
+        expect(response).to have_http_status(204)
+      end
+    end
+  end
+
+  # Tests suite for DELETE /cars/:id
+  describe 'DELETE /cars/:id' do
+    context 'when the record exists' do
+      before { put "/cars/#{car.id}",params: {}, headers: headers  }
+      it 'deletes the record' do
+        expect(response.body).to be_empty
+      end
+      it 'returns status code 204' do
+        expect(response).to have_http_status(204)
+      end
+    end
+  end
+
 end
