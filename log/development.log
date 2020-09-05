@@ -1884,3 +1884,347 @@ Processing by UsersController#index as */*
 Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.6ms | Allocations: 2261)
 
 
+  [1m[36mFavorite Load (26.8ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCar Load (0.3ms)[0m  [1m[34mSELECT "cars".* FROM "cars" LIMIT $1[0m  [["LIMIT", 11]]
+Started POST "/auth/login" for 127.0.0.1 at 2020-09-05 07:21:13 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"jose@mail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jose@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jose@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+Completed 200 OK in 516ms (Views: 0.2ms | ActiveRecord: 5.7ms | Allocations: 7393)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:22:01 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 299)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:22:19 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mFavorite Load (0.7ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '3')[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 9ms (Views: 2.2ms | ActiveRecord: 2.5ms | Allocations: 2810)
+
+
+Started GET "/users/2/favorites" for 127.0.0.1 at 2020-09-05 07:22:34 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '2')[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 11ms (Views: 6.8ms | ActiveRecord: 2.2ms | Allocations: 4137)
+
+
+Started GET "/users/2/favorites" for 127.0.0.1 at 2020-09-05 07:27:22 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 16ms (Views: 0.1ms | ActiveRecord: 5.6ms | Allocations: 5763)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:27:39 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 775)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:28:10 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 791)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:29:34 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 12ms (Views: 0.1ms | ActiveRecord: 3.0ms | Allocations: 5746)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:30:19 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 17ms (Views: 0.1ms | ActiveRecord: 4.0ms | Allocations: 5749)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:31:09 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 13ms (Views: 0.2ms | ActiveRecord: 3.1ms | Allocations: 5786)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:31:49 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 18ms (Views: 0.1ms | ActiveRecord: 4.3ms | Allocations: 5747)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:32:11 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 16ms (Views: 0.1ms | ActiveRecord: 5.1ms | Allocations: 5754)
+
+
+Started GET "/users/2/favorites" for 127.0.0.1 at 2020-09-05 07:35:23 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 19ms (Views: 0.2ms | ActiveRecord: 4.5ms | Allocations: 5761)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:35:40 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 780)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:37:11 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 19ms (Views: 0.1ms | ActiveRecord: 3.5ms | Allocations: 5783)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:37:50 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '3')[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 19ms (Views: 1.4ms | ActiveRecord: 4.8ms | Allocations: 7261)
+
+
+Started GET "/users/2/favorites" for 127.0.0.1 at 2020-09-05 07:38:04 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mFavorite Load (0.3ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '2')[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 10ms (Views: 6.6ms | ActiveRecord: 2.0ms | Allocations: 4040)
+
+
+Started GET "/users/2/favorites" for 127.0.0.1 at 2020-09-05 07:39:01 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 16ms (Views: 0.2ms | ActiveRecord: 3.6ms | Allocations: 5755)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:39:34 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 775)
+
+
+Started POST "/auth/login" for 127.0.0.1 at 2020-09-05 07:42:14 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"jose@mail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jose@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jose@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+Completed 200 OK in 519ms (Views: 0.2ms | ActiveRecord: 4.0ms | Allocations: 7388)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:43:31 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 4ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 1122)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:45:39 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 500 Internal Server Error in 15ms (Views: 0.1ms | ActiveRecord: 3.5ms | Allocations: 5763)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:48:02 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mFavorite Load (0.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '3')[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 23ms (Views: 2.3ms | ActiveRecord: 5.6ms | Allocations: 7588)
+
+
+Started GET "/users/2/favorites" for 127.0.0.1 at 2020-09-05 07:48:57 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 16ms (Views: 0.1ms | ActiveRecord: 5.4ms | Allocations: 5761)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:49:09 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '3')[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 7ms (Views: 1.9ms | ActiveRecord: 2.0ms | Allocations: 2337)
+
+
+Started POST "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:52:45 -0500
+Processing by FavoritesController#create as HTML
+  Parameters: {"car_id"=>"4", "user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:21:in `create'
+  [1m[36mCar Load (0.3ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:21:in `create'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:21:in `create'
+  [1m[36mFavorite Create (25.2ms)[0m  [1m[32mINSERT INTO "favorites" ("car_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["car_id", 4], ["user_id", 3], ["created_at", "2020-09-05 12:52:45.628010"], ["updated_at", "2020-09-05 12:52:45.628010"]]
+  ↳ app/controllers/favorites_controller.rb:21:in `create'
+  [1m[35m (18.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:21:in `create'
+Completed 201 Created in 94ms (Views: 0.4ms | ActiveRecord: 54.2ms | Allocations: 19744)
+
+
+Started POST "/users/2/favorites" for 127.0.0.1 at 2020-09-05 07:53:06 -0500
+Processing by FavoritesController#create as HTML
+  Parameters: {"car_id"=>"4", "user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 848)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 07:53:21 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '3')[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 4ms (Views: 1.6ms | ActiveRecord: 0.7ms | Allocations: 1643)
+
+
+Started GET "/users/2/favorites" for 127.0.0.1 at 2020-09-05 07:53:32 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 775)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 08:01:18 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mFavorite Load (0.5ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '3')[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 17ms (Views: 4.6ms | ActiveRecord: 1.1ms | Allocations: 9451)
+
+
+Started GET "/users/2/favorites" for 127.0.0.1 at 2020-09-05 08:01:29 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 842)
+
+
+Started POST "/users/2/favorites" for 127.0.0.1 at 2020-09-05 08:02:24 -0500
+Processing by FavoritesController#create as HTML
+  Parameters: {"card_id"=>"8", "user_id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 15ms (Views: 0.1ms | ActiveRecord: 4.4ms | Allocations: 5793)
+
+
+Started POST "/users/3/favorites" for 127.0.0.1 at 2020-09-05 08:02:35 -0500
+Processing by FavoritesController#create as HTML
+  Parameters: {"card_id"=>"8", "user_id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+[31mUnpermitted parameter: :card_id[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:22:in `create'
+Completed 422 Unprocessable Entity in 141ms (Views: 0.2ms | ActiveRecord: 3.1ms | Allocations: 199960)
+
+
+Started POST "/users/2/favorites" for 127.0.0.1 at 2020-09-05 08:02:51 -0500
+Processing by FavoritesController#create as HTML
+  Parameters: {"car_id"=>"8", "user_id"=>"2"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 782)
+
+
+Started POST "/users/3/favorites" for 127.0.0.1 at 2020-09-05 08:03:01 -0500
+Processing by FavoritesController#create as HTML
+  Parameters: {"car_id"=>"8", "user_id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:22:in `create'
+  [1m[36mCar Load (0.5ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:22:in `create'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:22:in `create'
+  [1m[36mFavorite Create (0.8ms)[0m  [1m[32mINSERT INTO "favorites" ("car_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["car_id", 8], ["user_id", 3], ["created_at", "2020-09-05 13:03:01.849766"], ["updated_at", "2020-09-05 13:03:01.849766"]]
+  ↳ app/controllers/favorites_controller.rb:22:in `create'
+  [1m[35m (20.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:22:in `create'
+Completed 201 Created in 43ms (Views: 0.3ms | ActiveRecord: 26.0ms | Allocations: 9402)
+
+
+Started GET "/users/2/favorites" for 127.0.0.1 at 2020-09-05 08:03:25 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 401 Unauthorized in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 780)
+
+
+Started GET "/users/3/favorites" for 127.0.0.1 at 2020-09-05 08:03:36 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mFavorite Load (0.4ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '3')[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 4ms (Views: 1.6ms | ActiveRecord: 0.8ms | Allocations: 1743)
+
+

@@ -2,23 +2,39 @@
 
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:destroy]
+  before_action :set_user_id
 
   # GET /users/:user_id/favorites
   def index
-    @favorites = Favorite.where('user_id = ?', params[:user_id])
-    json_response(@favorites)
+    # The user can only see its own favorites
+    if @current_user.id == @user_id
+      @favorites = Favorite.where('user_id = ?', params[:user_id])
+      json_response(@favorites)
+    else
+      render(json: { message: Message.unauthorized }, status: 401)
+    end
   end
 
   # POST /users/:user_id/favorites
   def create
-    @favorite = Favorite.create!(favorite_params)
-    json_response(@favorite, :created)
+    # The user can only create its own favorites
+    if @current_user.id == @user_id
+      @favorite = Favorite.create!(favorite_params)
+      json_response(@favorite, :created)
+    else
+      render(json: { message: Message.unauthorized }, status: 401)
+    end
   end
 
   # DELETE /favorites/:id
   def destroy
-    @favorite.destroy
-    head :no_content
+    # The user can only delete its own favorites
+    if @current_user.id == @user_id
+      @favorite.destroy
+      head :no_content
+    else
+      render(json: { message: Message.unauthorized }, status: 401)
+    end
   end
 
   private
@@ -30,5 +46,9 @@ class FavoritesController < ApplicationController
 
   def set_favorite
     @favorite = Favorite.find(params[:id])
+  end
+
+  def set_user_id
+    @user_id = params[:user_id].to_i
   end
 end
