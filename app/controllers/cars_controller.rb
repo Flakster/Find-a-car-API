@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CarsController < ApplicationController
-  before_action :set_car, only: [:show, :update, :destroy]
-  skip_before_action :authorize_request, only: [:index, :show]
+  before_action :set_car, only: %i[show update destroy]
+  skip_before_action :authorize_request, only: %i[index show]
 
   # GET /cars
   def index
@@ -35,11 +37,10 @@ class CarsController < ApplicationController
 
   def cars_params
     # whitelist params
-    params.permit( :make, :color, :year, :price )
+    params.permit(:make, :color, :year, :price)
   end
 
   def set_car
     @car = Car.find(params[:id])
   end
-
 end

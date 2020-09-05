@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Favorites API', type: :request do
-  # initialize test data 
+  # initialize test data
   let!(:user) { create(:user) }
   let!(:car) { create(:car) }
   let!(:favorite) { FactoryBot.create(:favorite) }
 
-  let(:headers) { valid_headers } 
+  let(:headers) { valid_headers }
 
   # Test suite for GET /users/:user_id/favorites
   describe 'GET /users/:user_id/favorites' do

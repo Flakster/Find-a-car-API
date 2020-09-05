@@ -1360,3 +1360,293 @@ Processing by CarsController#index as */*
 Completed 200 OK in 16ms (Views: 9.3ms | ActiveRecord: 5.1ms | Allocations: 8105)
 
 
+Started GET "/" for 127.0.0.1 at 2020-09-04 15:36:28 -0500
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CarsController#index as */*
+  [1m[36mCar Load (1.2ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 68ms (Views: 41.1ms | ActiveRecord: 9.7ms | Allocations: 8661)
+
+
+Started GET "/" for 127.0.0.1 at 2020-09-04 15:58:04 -0500
+Processing by CarsController#index as */*
+  [1m[36mCar Load (2.0ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 19ms (Views: 15.6ms | ActiveRecord: 2.0ms | Allocations: 3362)
+
+
+Started GET "/1" for 127.0.0.1 at 2020-09-04 15:58:09 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/1"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/1" for 127.0.0.1 at 2020-09-04 15:58:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/1"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/cars/1" for 127.0.0.1 at 2020-09-04 15:58:29 -0500
+Processing by CarsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCar Load (0.3ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:44:in `set_car'
+Completed 200 OK in 10ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 2672)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-09-04 15:58:58 -0500
+Processing by UsersController#index as */*
+Completed 422 Unprocessable Entity in 51ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 360)
+
+
+Started GET "/cars" for 127.0.0.1 at 2020-09-04 16:00:38 -0500
+Processing by CarsController#index as */*
+  [1m[36mCar Load (0.4ms)[0m  [1m[34mSELECT "cars".* FROM "cars"[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.4ms | Allocations: 3273)
+
+
+Started GET "/cars/1" for 127.0.0.1 at 2020-09-04 16:09:00 -0500
+Processing by CarsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mCar Load (0.3ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/cars_controller.rb:44:in `set_car'
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.6ms | Allocations: 872)
+
+
+Started POST "/signup?name=Jhon%20Doe&email=jdoe@mail.com&password=[FILTERED]&Password_confirmation=[FILTERED]" for 127.0.0.1 at 2020-09-04 16:52:55 -0500
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Jhon Doe", "email"=>"jdoe@mail.com", "password"=>"[FILTERED]", "Password_confirmation"=>"[FILTERED]"}
+[31mUnpermitted parameter: :Password_confirmation[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:15:in `create'
+  [1m[36mUser Create (84.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Jhon Doe"], ["email", "jdoe@mail.com"], ["password_digest", "$2a$12$9JrVGOHZHGY6I6z4F3wK7urw7G8dnStmS6xoZ47dqO9IZEUoMwJjS"], ["created_at", "2020-09-04 21:52:56.421256"], ["updated_at", "2020-09-04 21:52:56.421256"]]
+  ↳ app/controllers/users_controller.rb:15:in `create'
+  [1m[35m (138.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:15:in `create'
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jdoe@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jdoe@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+Completed 201 Created in 1550ms (Views: 0.1ms | ActiveRecord: 428.3ms | Allocations: 10596)
+
+
+Started POST "/auth/login?email=jdoe@mail.com&password=[FILTERED]" for 127.0.0.1 at 2020-09-04 17:00:42 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"jdoe@mail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jdoe@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "jdoe@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+Completed 200 OK in 500ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 1472)
+
+
+Started GET "/auth/login%20?email=jdoe@mail.com&password=[FILTERED]" for 127.0.0.1 at 2020-09-04 17:15:53 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/auth/login%20"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/auth/login%20?email=jdoe@mail.com&password=[FILTERED]" for 127.0.0.1 at 2020-09-04 17:16:05 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/auth/login%20"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/auth/login%20?%27email=jdoe@mail.com&password=[FILTERED]" for 127.0.0.1 at 2020-09-04 17:17:26 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/auth/login%20"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/auth/login?%27email=jdoe@mail.com&password=[FILTERED]" for 127.0.0.1 at 2020-09-04 17:17:57 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"'email"=>"jdoe@mail.com", "password"=>"[FILTERED]"}
+[31mUnpermitted parameter: :'email[0m
+[31mUnpermitted parameter: :'email[0m
+  [1m[36mUser Load (233.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+Completed 401 Unauthorized in 246ms (Views: 0.5ms | ActiveRecord: 239.7ms | Allocations: 1041)
+
+
+Started POST "/auth/login?%27email=carlos@mail.com&password=[FILTERED]" for 127.0.0.1 at 2020-09-04 17:18:18 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"'email"=>"carlos@mail.com", "password"=>"[FILTERED]"}
+[31mUnpermitted parameter: :'email[0m
+[31mUnpermitted parameter: :'email[0m
+  [1m[36mUser Load (3.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+Completed 401 Unauthorized in 5ms (Views: 0.2ms | ActiveRecord: 3.0ms | Allocations: 914)
+
+
+Started POST "/auth/login" for 127.0.0.1 at 2020-09-04 17:19:24 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"carlos@mail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (77.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "carlos@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "carlos@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+Completed 200 OK in 601ms (Views: 0.1ms | ActiveRecord: 77.2ms | Allocations: 1311)
+
+
+Started POST "/auth/login?email=carlos@mail.com&password=[FILTERED]" for 127.0.0.1 at 2020-09-04 17:19:51 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"carlos@mail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "carlos@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "carlos@mail.com"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+Completed 200 OK in 493ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 1308)
+
+
+Started POST "/users/2/favorites?car_id=2&Authorization=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1OTkzNDQzOTF9.SHuJPYpPKMmjiqe8mfxPfr5ubIL9CCpswNB751stsNI" for 127.0.0.1 at 2020-09-04 17:30:12 -0500
+Processing by FavoritesController#create as */*
+  Parameters: {"car_id"=>"2", "Authorization"=>"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE1OTkzNDQzOTF9.SHuJPYpPKMmjiqe8mfxPfr5ubIL9CCpswNB751stsNI", "user_id"=>"2"}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 124)
+
+
+Started POST "/users/2/favorites?car_id=2" for 127.0.0.1 at 2020-09-04 17:31:05 -0500
+Processing by FavoritesController#create as */*
+  Parameters: {"car_id"=>"2", "user_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/favorites_controller.rb:14:in `create'
+  [1m[36mCar Load (0.8ms)[0m  [1m[34mSELECT "cars".* FROM "cars" WHERE "cars"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:14:in `create'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:14:in `create'
+  [1m[36mFavorite Create (367.3ms)[0m  [1m[32mINSERT INTO "favorites" ("car_id", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["car_id", 2], ["user_id", 2], ["created_at", "2020-09-04 22:31:05.519676"], ["updated_at", "2020-09-04 22:31:05.519676"]]
+  ↳ app/controllers/favorites_controller.rb:14:in `create'
+  [1m[35m (15.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/favorites_controller.rb:14:in `create'
+Completed 201 Created in 820ms (Views: 0.7ms | ActiveRecord: 436.3ms | Allocations: 12230)
+
+
+Started GET "/users/2/favorites" for 127.0.0.1 at 2020-09-04 17:32:28 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mFavorite Load (0.9ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '2')[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 8ms (Views: 2.7ms | ActiveRecord: 1.8ms | Allocations: 1748)
+
+
+Started GET "/users/2/favorites" for 127.0.0.1 at 2020-09-04 17:42:32 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 94)
+
+
+Started GET "/users/2/favorites" for 127.0.0.1 at 2020-09-04 17:42:56 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mFavorite Load (0.8ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE (user_id = '2')[0m
+  ↳ app/controllers/concerns/response.rb:5:in `json_response'
+Completed 200 OK in 10ms (Views: 3.6ms | ActiveRecord: 2.4ms | Allocations: 1845)
+
+

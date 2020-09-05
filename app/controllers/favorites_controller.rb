@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:destroy]
 
@@ -23,11 +25,10 @@ class FavoritesController < ApplicationController
 
   def favorite_params
     # whitelist params
-    params.permit( :user_id, :car_id )
+    params.permit(:user_id, :car_id)
   end
 
   def set_favorite
     @favorite = Favorite.find(params[:id])
   end
-  
 end
