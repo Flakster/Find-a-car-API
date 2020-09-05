@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'cars#index'
   resources :users, except: :show do
-    resources :favorites, only: [:index, :create, :destroy ]
+    resources :favorites, except: :show
   end
   resources :cars
   post 'auth/login', to: 'authentication#authenticate'

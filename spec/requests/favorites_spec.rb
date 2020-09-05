@@ -38,9 +38,25 @@ RSpec.describe 'Favorites API', type: :request do
       end
     end
 
+  # Test suite for PUT /users/:user_id/favorites/:id
+  describe 'PUT /users/#{user.id}/favorites/:id' do
+    # valid payload
+    let(:valid_attributes) { { car_id: car.id }.to_json }
+    before { put "/users/#{user.id}/favorites/#{favorite.id}", params: valid_attributes, headers: headers }
+    it 'updates the record' do
+      expect(response.body).to be_empty
+    end
+    it 'returns status code 204' do
+      expect(response).to have_http_status(204)
+    end
+  end
+
   # Test suite for DELETE /users/:user_id/favorites/:id
   describe 'DELETE /users/#{user.id}/favorites/:id' do
     before { delete "/users/#{user.id}/favorites/#{favorite.id}", params: {}, headers: headers }
+    it 'deletes the record' do
+      expect(response.body).to be_empty
+    end
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
     end

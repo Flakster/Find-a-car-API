@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FavoritesController < ApplicationController
-  before_action :set_favorite, only: [:destroy]
+  before_action :set_favorite, only: [:update, :destroy]
   before_action :set_user_id
 
   # GET /users/:user_id/favorites
@@ -21,6 +21,17 @@ class FavoritesController < ApplicationController
     if @current_user.id == @user_id
       @favorite = Favorite.create!(favorite_params)
       json_response(@favorite, :created)
+    else
+      render(json: { message: Message.unauthorized }, status: 401)
+    end
+  end
+
+  # PUT /users/:user_id/favorites/:id
+  def update
+    # The user can only update its own favorites
+    if @current_user.id == @user_id
+      @favorite.update(favorite_params)
+      head :no_content
     else
       render(json: { message: Message.unauthorized }, status: 401)
     end
