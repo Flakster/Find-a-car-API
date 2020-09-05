@@ -11,3 +11,5 @@ Car.create( { make: 'Chevy', color: 'red', year: 2017, price: 1010 } )
 Car.create( { make: 'Tesla', color: 'blue', year: 2015, price: 12098 } )
 Car.create( { make: 'Audi', color: 'silver', year: 2019, price: 13093 } )
 Car.create( { make: 'Nissan', color: 'green', year: 2018, price: 15000 })
+
+User.create( {name: 'admin', email: 'admin@mail.com', password: 'pass123', admin: true} )
