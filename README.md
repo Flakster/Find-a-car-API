@@ -59,7 +59,11 @@ bundle install
 ```
 11. Open your web browser and go to **localhost:3000**
 
-## See a live demo [Here](https:///)
+## The API public address
+
+`https://find-a-car-api.herokuapp.com`
+
+## Read the public documentation [here](https://documenter.getpostman.com/view/12581937/TVCh1TdA)
 
 ## Watch a video with the presentation of the project [Here]()
 
