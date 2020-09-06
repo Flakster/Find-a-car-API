@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FavoritesController < ApplicationController
-  before_action :set_favorite, only: [:update, :destroy]
+  before_action :set_favorite, only: %i[update destroy]
   before_action :set_user_id
 
   # GET /users/:user_id/favorites

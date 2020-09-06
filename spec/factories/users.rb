@@ -8,7 +8,7 @@ FactoryBot.define do
     email 'foobar@mail.com'
     password 'foobar'
   end
-  factory :admin, :parent => :user do
+  factory :admin, { parent: :user } do
     name 'admin'
     email 'admin@mail.com'
     password 'foobar'

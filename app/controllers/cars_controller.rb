@@ -15,7 +15,7 @@ class CarsController < ApplicationController
       @car = Car.create!(cars_params)
       json_response(@car, :created)
     else
-      render(json: { message: Message.unauthorized }, status: 401) 
+      render(json: { message: Message.unauthorized }, status: 401)
     end
   end
 
@@ -30,7 +30,7 @@ class CarsController < ApplicationController
       @car.update(cars_params)
       head :no_content
     else
-      render(json: { message: Message.unauthorized }, status: 401) 
+      render(json: { message: Message.unauthorized }, status: 401)
     end
   end
 
@@ -40,7 +40,7 @@ class CarsController < ApplicationController
       @car.destroy
       head :no_content
     else
-      render(json: { message: Message.unauthorized }, status: 401) 
+      render(json: { message: Message.unauthorized }, status: 401)
     end
   end
 

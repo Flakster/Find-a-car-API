@@ -58,8 +58,8 @@ RSpec.describe 'User API', type: :request do
     let(:valid_attributes) do
       attributes_for(:user, password_confirmation: user.password)
     end
-    context 'when the record exists' do 
-      before { put "/users/#{user.id}",params: valid_attributes.to_json, headers: headers  }
+    context 'when the record exists' do
+      before { put "/users/#{user.id}", params: valid_attributes.to_json, headers: headers }
       it 'updates the record' do
         expect(response.body).to be_empty
       end
@@ -71,8 +71,8 @@ RSpec.describe 'User API', type: :request do
 
   # Test suite for DELETE/users/:id
   describe 'DELETE/user/:id' do
-    context 'when the record exists' do 
-      before { put "/users/#{user.id}",params: {}, headers: headers  }
+    context 'when the record exists' do
+      before { put "/users/#{user.id}", params: {}, headers: headers }
       it 'updates the record' do
         expect(response.body).to be_empty
       end
@@ -81,5 +81,4 @@ RSpec.describe 'User API', type: :request do
       end
     end
   end
-
 end
