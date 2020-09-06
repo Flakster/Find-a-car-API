@@ -1,19 +1,34 @@
 # Find a car RESTful API
 
-This is a backend-only project. Consists in an API REST for a car sale service. It allows a user to log in and then it presents a list of cars. The user can choose one car to see its details and have the chance to add that car to its own list of favorites. The user can also show his/her favorites.
+This is a backend-only project. Consists in an API REST for a car sale service. It allows the client app to offer the following workflow to the end user:
 
-## Screenshots
+1. The user logs in the app, by typing his credentials: email and password. If the credentials are valid A token authorization is returned.
+2. The user is presented with a list of cars.
+3. When a user selects a car, detailed information about that car is presented and the possibility add it to favorites
+4. The user can access a list of favorite cars
+
+## Entity relationship diagram
+
+![Screenshot from 2020-09-06 10-14-29](https://user-images.githubusercontent.com/53324035/92329320-585df000-f02c-11ea-9545-71c5c06667d8.png)
 
 ## Built with
 
   * Ruby on Rails
   * Postgresql
+  * Rspec
+  * Shoulda matchers
+  * Factory bot
+  * Database cleaner
+  * Faker
+  * Bcrypt
+  * JSON web token
   
 ## Prerequisites
 
   * Ruby: 2.7.0
   * Rails: 5.2.4
   * Postgres: >=9.5
+  * API client like Postman or HTTPie
 
 ## Getting Started:
 
@@ -40,7 +55,7 @@ bundle install
 
 ```
   sudo -u postgres psql
-  CREATE ROLE events WITH CREATEDB LOGIN PASSWORD 'pass123';
+  CREATE ROLE my_api WITH CREATEDB LOGIN PASSWORD 'pass123';
 ```
   (Exit postgres console with \q)
   
@@ -57,13 +72,16 @@ bundle install
 ```
    rails server
 ```
-11. Open your web browser and go to **localhost:3000**
+11. Open your API client and go to **localhost:3000**
+
+12. Read the documentation to know the way to make the requests properly
+
+## Read the public documentation [here](https://documenter.getpostman.com/view/12581937/TVCh1TdA)
 
 ## The API public address
 
 `https://find-a-car-api.herokuapp.com`
 
-## Read the public documentation [here](https://documenter.getpostman.com/view/12581937/TVCh1TdA)
 
 ## Watch a video with the presentation of the project [Here]()
 
