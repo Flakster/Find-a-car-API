@@ -76,6 +76,11 @@ bundle install
 
 12. Read the documentation to know the way to make the requests properly
 
+13. To run the automated unit tests use the following command:
+```
+   bundle exec rspec
+```
+
 ## Read the public documentation [here](https://documenter.getpostman.com/view/12581937/TVCh1TdA)
 
 ## The API public address
@@ -94,7 +99,7 @@ bundle install
 Give a ⭐️ if you like this project!
  
 ## License
-This project is [MIT]() Licensed
+This project is [MIT](https://github.com/Flakster/Find-a-car-API/blob/api/LICENSE) Licensed
 
 ## Author
 👤 Carlos Santamaría
