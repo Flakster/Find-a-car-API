@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   # model association
   has_many :favorites, dependent: :destroy
+  has_many :cars, through: :favorites
 
   # validations
   validates_presence_of :name, :email, :password_digest

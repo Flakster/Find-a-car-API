@@ -8,7 +8,7 @@ class FavoritesController < ApplicationController
   def index
     # The user can only see its own favorites
     if @current_user.id == @user_id
-      @favorites = Favorite.where('user_id = ?', params[:user_id])
+      @favorites = User.find(params[:user_id]).cars
       json_response(@favorites)
     else
       render(json: { message: Message.unauthorized }, status: 401)
