@@ -70,10 +70,10 @@ bundle install
    rails db:seed
 ```
 An admin user will be created with the following credentials:
-
+```
   email: admin@mail.com
-  pqassword: pass123
-
+  password: pass123
+```
 
 10. Start your web server:
 ```
