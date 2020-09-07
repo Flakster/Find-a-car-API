@@ -4,9 +4,9 @@ require 'rails_helper'
 
 RSpec.describe 'Favorites API', type: :request do
   # initialize test data
-  let!(:user) { create(:user) }
-  let!(:car) { create(:car) }
-  let!(:favorite) { FactoryBot.create(:favorite) }
+  let!(:user) { FactoryBot.create(:user) }
+  let!(:car) { FactoryBot.create(:car) }
+  let!(:favorite) { Favorite.create({ car_id: car.id, user_id: user.id }) }
 
   let(:headers) { valid_headers }
 

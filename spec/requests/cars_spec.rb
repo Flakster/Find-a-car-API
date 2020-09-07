@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Car API', type: :request do
   # initialize test data
-  let!(:user) { FactoryBot.create(:admin) }
+  let!(:user) { create(:admin) }
   let!(:cars) { create_list(:car, 10) }
   let!(:car) { cars.first }
   let(:car_id) { car.id }
