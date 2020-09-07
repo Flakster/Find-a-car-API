@@ -67,7 +67,14 @@ bundle install
 ```
    rails db:create
    rails db:migrate
+   rails db:seed
 ```
+An admin user will be created with the following credentials:
+
+  email: admin@mail.com
+  pqassword: pass123
+
+
 10. Start your web server:
 ```
    rails server
